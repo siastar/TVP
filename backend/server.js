@@ -1,15 +1,45 @@
-console.log('node now running...');
+console.log('starting node...');
 
 const express = require('express');
+const mongoose = require('mongoose');
+const localDB = 'mongodb://localhost:27017/vinylstore'
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000
 
-//middlewares\\
+//
+//
+//
+//connection to localDB
+mongoose.connect(localDB, {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+});
 
-app.use(bodyParser.urlencoded({extended : true}));
+const db = mongoose.connection;
+
+db.on('connected', function(){  
+    console.log('connected to: ', localDB);
+});
+
+db.on('error', function(err){
+    console.log('ox connection ERROR on:', localDB);
+    //console.log("Mongoose default connection has occured "+err+" error");
+});
+
+//
+//
+//
+//middlewares
+app.use(bodyParser.urlencoded({
+  extended: true
 //https://www.npmjs.com/package/body-parser
+}));
 
+//
+//
+//
+//Routes
 app.get('/test', (req, res) => {
     res.send('Express server running - this message is hardcoded in server.js');
 });//just a test route
@@ -21,23 +51,27 @@ app.get('/', (req, res) => {
 
 app.post('/quotes', (req, res) => {
     console.log(req.body)
-})
 //when data provided through server.html forms returns something like
 // {
 //     name: 'Yoda',
 //     quote: 'Gotta green big ears'
 // }
+})
 
 app.post('/records', (req, res) => {
   console.log(req.body)
-})
 //when data provided through server.html forms returns something like
 // {
 //   artist: 'Ozric Tentacles',
 //   title: 'Pungent Effulgent',
 //   year: '1989'
 // }
+})
 
+//
+//
+//
+//enable server listening...
 app.listen(PORT, () => {
     console.log('server listening on port' , PORT);
     console.log('CTRL^C to stop server');
