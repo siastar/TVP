@@ -5,7 +5,7 @@ let mongoose = require('mongoose');
 //const DBserver = 'localhost:27017/'; //database server address 
 //const DBname   = 'vinylstore';       //database name
 
-const localDB = 'mongodb://localhost:27017/vinylstore'
+const localDB = 'mongodb://localhost:27017/vinylstore';
 
 class Database {
   constructor() {
