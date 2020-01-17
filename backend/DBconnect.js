@@ -9,8 +9,8 @@ const localDB = 'mongodb://localhost:27017/vinylstore';
 
 class Database {
   constructor() {
-    this._connect()
-  }
+    this._connect() //."._connect" because ".connect" is a mongoose method
+  };
   
 _connect() {
   mongoose.connect(localDB, {
@@ -24,8 +24,8 @@ _connect() {
            console.error('Database connection error:' , err)
        })
   }
-}
+};
 
-module.exports = new Database()
+module.exports = new Database();
 
 

@@ -1,0 +1,17 @@
+{
+  "name": "the-vinyl-place-frontend",
+  "version": "1.0.0",
+  "description": "the vinyl place client side",
+  "main": "index.js",
+  "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "webpack-dev-server --config ./webpack.config.js --mode development"
+  },
+  "author": "www.siastar.me",
+  "license": "GPL-3.0-or-later",
+  "devDependencies": {
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  }
+}
