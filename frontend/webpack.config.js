@@ -1,17 +1,38 @@
+const webpack = require('webpack');
+
 module.exports = {
-  // 1
+  
   entry: './src/index.js',
-  // 2
+  
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader']
+      }
+    ]
+  },
+
+  resolve: {
+      extensions: ['*', '.js', 'jsx']
+  },
+    
   output: {
     path: __dirname + '/dist', //https://alligator.io/nodejs/how-to-use__dirname/
     publicPath: '/',
     filename: 'bundle.js'
   },
-  // 3
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
+    
   devServer: {
       contentBase: './dist',
+      hot: true, //enables hpt reload on file changes (similar to nodemon)
       compress: true,
-      port: 9999
+      port: 9999 //if not specified the default port is 8080
   }
 };
 
