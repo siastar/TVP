@@ -1,9 +1,9 @@
-console.log('...opening /model/VinylSchema.js')
+console.log('...opening /model/ProductSchema.js')
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const VinylSchema = new Schema({
+const ProductSchema = new Schema({
 
     artist:{
         type: String,
@@ -32,4 +32,13 @@ const VinylSchema = new Schema({
     
 });
 
-module.exports = mongoose.model('Vinyl' , VinylSchema);
+//console.log('Productschema:' , ProductSchema)
+
+module.exports = mongoose.model('vinyl' , ProductSchema);
+
+// the schema implicitally defines the collection it will search in, by pluralizing the 1st
+// parameter in the module.export instruction 
+//
+// in this case the collection MUST be called "vinyls"
+//                             ^^^^                 ^
+

@@ -1,22 +1,22 @@
-console.log('...opening /routes/VinylsRoute')
+console.log('...opening /routes/ProductsRoute.js')
 
 const express = require('express');
-const vinylRouter = express.Router();
-const VinylSchema = require('../model/VinylSchema.js');
+const router = express.Router();
+const ProductSchema = require('../model/ProductSchema.js');
 
 // C R U D: Create - Read - Update - Delete 
 
 //mongoose methods are implicitally used without importing mongoose itself because it
-//comes already incapsulated in vinylSchema.js, whose instance requires mongoose in the beginning
+//comes already incapsulated in productSchema.js, whose instance requires mongoose in the beginning
 //(Alice in Objectland)
 
 //Read
 
-vinylRouter.get( '/' , (req , res) => {
-    VinylSchema.find({} , (err , response) => {//.find -> mongoose method
+router.get( '/' , (req , res) => {
+    ProductSchema.find({} , (err , response) => {//.find -> mongoose method
         if (err)
             res.status(500).json({message:{
-                msgBody : "cannot reach vinyls",
+                msgBody : "cannot reach products",
                 msgError : true
             }})
         else
@@ -27,18 +27,18 @@ vinylRouter.get( '/' , (req , res) => {
 
 //Create
 
-vinylRouter.post( '/' , (req , res) => {
-    const vinyl = new VinylSchema(req.body); //new instance of the model vinylSchema
-    vinyl.save((err, document) => { //.save -> mongoose method
+router.post( '/' , (req , res) => {
+    const product = new ProductSchema(req.body); //new instance of the model productSchema
+    product.save((err, document) => { //.save -> mongoose method
 
         if (err)
             res.status(500).json({message:{
-                msgBody : "cannot add vinyl",
+                msgBody : "cannot add product",
                 msgError : true
             }})
         else
             res.status(200).json({message:{
-                msgBody : "vinyl succesfully added",
+                msgBody : "product succesfully added",
                 msgError : false
             }});
     });
@@ -46,40 +46,41 @@ vinylRouter.post( '/' , (req , res) => {
 
 //Delete
 
-vinylRouter.delete('/:id' , (req , res) => {
-    VinylSchema.findByIdAndDelete(req.params.id , err => {
+router.delete('/:id' , (req , res) => {
+    ProductSchema.findByIdAndDelete(req.params.id , err => {
         //.findByIdAndDelete -> mongoose
         // params is in res properties 
         if (err)
             res.status(500).json({message:{
-                msgBody : "cannot remove vinyl",
+                msgBody : "cannot remove product",
                 msgError : true
             }})
         else
             res.status(200).json({message:{
-                msgBody : "vinyl succesfully",
+                msgBody : "product removed",
                 msgError : false
             }});
     });
 });
 
 //Update
-vinylRouter.put('/:id' , (req , res) => {
-    VinylSchema.findOneAndUpdate(req.params.id , // params.id is the element to update
+
+router.put('/:id' , (req , res) => {
+    ProductSchema.findOneAndUpdate(req.params.id , // params.id is the element to update
                           req.body , // updated content, findOneandupdate is a mongoose method
                           {runValidators : true},
                           (err , response) => {
                                if (err)
                                    res.status(500).json({message:{
-                                       msgBody : "cannot modify vinyl",
+                                       msgBody : "cannot modify product",
                                        msgError : true
                                    }})
                               else
                                   res.status(200).json({message:{
-                                      msgBody : "vinyl successfully modified",
+                                      msgBody : "product successfully modified",
                                       msgError : false
                                   }});
                           });
 });
 
-module.exports = vinylRouter
+module.exports = router
