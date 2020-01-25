@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
-
     render(){
 	return(
             <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
@@ -12,21 +11,20 @@ class Navbar extends Component {
               <div className="collapse navbar-collapse">
                 <ul className="navbar-nav mr-auto">
                   <li className="navbar-item">
-                    <Link to='/' className="nav-link"> Get Products </Link>
+                    <Link to='/all' className="nav-link"> /all - Get Products </Link>
                   </li>
                   <li className="navbar-item">
-                    <Link to='/create' className="nav-link"> Add Product </Link>
+                    <Link to='/create' className="nav-link"> /create - Add Product </Link>
                   </li>
                   <li className="navbar-item">
-                    <Link to='/remove' className="nav-link"> Remove Product </Link>
+                    <Link to='/remove' className="nav-link"> /remove - Remove Product </Link>
                   </li>
                   <li className="navbar-item">
-                    <Link to='/edit' className="nav-link"> Edit Product </Link>
+                    <Link to='/edit/12345' className="nav-link"> /edit - Edit Product </Link>
                   </li>
                 </ul>
               </div>
             </nav>
-	    
 	);
     }
 };

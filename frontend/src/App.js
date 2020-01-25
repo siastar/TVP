@@ -39,16 +39,16 @@ class App extends React.Component {
     console.log('rendering... ');
     return (
       <div className=''>
-       <p>hello!</p>
-       <h4> {this.state.check} </h4>
+        <p>hello!</p>
+        <h4> {this.state.check} </h4>
         <Router>
-          <NavBar/>
-          <Route path='/' component={GetAllProds}/>
-          <Route path='/create' component={AddProd}/>
-          <Route path='/remove' component={DelProd}/>
-          <Route path='/edit/:id' component={ModProd}/>
+          <NavBar />
+          <Route path='/all' component={GetAllProds} />
+          <Route path='/create' component={AddProd} />
+          <Route path='/remove' component={DelProd} />
+          <Route path='/edit/:id' component={ModProd} />
         </Router>
-	</div>
+      </div>
     );
   };
 
