@@ -10,77 +10,115 @@ const ProductSchema = require('../model/ProductSchema.js');
 //comes already incapsulated in productSchema.js, whose instance requires mongoose in the beginning
 //(Alice in Objectland)
 
-//Read
+//Read All
 
-router.get( '/' , (req , res) => {
-    ProductSchema.find({} , (err , response) => {//.find -> mongoose method
-        if (err)
-            res.status(500).json({message:{
-                msgBody : "cannot reach products",
-                msgError : true
-            }})
-        else
-            res.status(200).json(response);
-    });
+router.get('/getdata', (req, res) => {
+  console.log('req.body :', req.body); //
+  console.log('res.body :', res.body); //
+
+  ProductSchema.find((err, data) => { //.find -> mongoose method
+    if (err)
+      res.status(500).json({
+        message: {
+          msgBody: "cannot reach products",
+          msgError: true,
+          err: err
+        }
+      })
+
+    else
+      res.status(200).json({
+        message: {
+          msgBody: "reached products",
+          msgError: false
+        },
+        data
+      });
+  });
 });
+
 
 
 //Create
 
-router.post( '/' , (req , res) => {
-    const product = new ProductSchema(req.body); //new instance of the model productSchema
-    product.save((err, document) => { //.save -> mongoose method
+router.post('/createdata/', (req, res) => {
 
-        if (err)
-            res.status(500).json({message:{
-                msgBody : "cannot add product",
-                msgError : true
-            }})
-        else
-            res.status(200).json({message:{
-                msgBody : "product succesfully added",
-                msgError : false
-            }});
-    });
+  const newdata = new ProductSchema(req.body); //new instance of the model productSchema
+  newdata.save((err, document) => { //.save -> mongoose method saves newdata in the DB
+
+    if (err)
+      res.status(500).json({
+        message: {
+          msgBody: "cannot add product",
+          msgError: true,
+          err: err
+        }
+      })
+
+    else
+      res.status(200).json({
+        message: {
+          msgBody: "product succesfully added",
+          msgError: false,
+          newdata: newdata
+        }
+      });
+  });
 });
 
 //Delete
 
-router.delete('/:id' , (req , res) => {
-    ProductSchema.findByIdAndDelete(req.params.id , err => {
-        //.findByIdAndDelete -> mongoose
-        // params is in res properties 
-        if (err)
-            res.status(500).json({message:{
-                msgBody : "cannot remove product",
-                msgError : true
-            }})
-        else
-            res.status(200).json({message:{
-                msgBody : "product removed",
-                msgError : false
-            }});
+router.delete('/deletedata/:id', (req, res) => {
+  console.log('req.body :', req.body); //
+  console.log('res.body :', res.body); //
+  ProductSchema.findByIdAndDelete(req.params.id, err => {
+    //.findByIdAndDelete -> mongoose
+    // params is in res properties 
+    if (err)
+      res.status(500).json({
+        message: {
+          msgBody: "cannot remove product",
+          msgError: true
+        }
+      })
+    else
+      res.status(200).json({
+        message: {
+          msgBody: "product removed",
+          msgError: false
+        }
+      });
+  });
+});
+
+//Update // to fix, does not update correct record
+router.put('/updatedata/:id', (req, res) => {
+
+  ProductSchema.findOneAndUpdate(
+    req.params.id, // params.id is the element to update id
+    req.body, // updated content, findOneAndUpdate is a mongoose method
+
+    {
+      runValidators: true
+    },
+
+    (err, data) => {
+      if (err)
+        res.status(500).json({
+          message: {
+            msgBody: "cannot modify product",
+            msgError: true
+          }
+        })
+
+      else
+        res.status(200).json({
+          message: {
+            msgBody: "product successfully modified",
+            msgError: false,
+            updated: data
+          }
+        });
     });
 });
-
-//Update
-
-router.put('/:id' , (req , res) => {
-    ProductSchema.findOneAndUpdate(req.params.id , // params.id is the element to update
-                          req.body , // updated content, findOneandupdate is a mongoose method
-                          {runValidators : true},
-                          (err , response) => {
-                               if (err)
-                                   res.status(500).json({message:{
-                                       msgBody : "cannot modify product",
-                                       msgError : true
-                                   }})
-                              else
-                                  res.status(200).json({message:{
-                                      msgBody : "product successfully modified",
-                                      msgError : false
-                                  }});
-                          });
-});
-
 module.exports = router
