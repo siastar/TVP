@@ -16,7 +16,7 @@ router.get('/getdata', (req, res) => {
   console.log('req.body :', req.body); //
   console.log('res.body :', res.body); //
 
-  ProductSchema.find((err, data) => { //.find -> mongoose method
+  ProductSchema.find((err, allProds) => { //.find -> mongoose method
     if (err)
       res.status(500).json({
         message: {
@@ -32,7 +32,7 @@ router.get('/getdata', (req, res) => {
           msgBody: "reached products",
           msgError: false
         },
-        data
+        allProds // allProds will be referenced in client component GetAllProds.js
       });
   });
 });

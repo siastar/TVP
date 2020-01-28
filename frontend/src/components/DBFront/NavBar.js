@@ -1,32 +1,49 @@
-console.log ('...opening src/components/DBFront/Navbar.js')
+console.log('...opening src/components/DBFront/Navbar.js')
 
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React, {
+  Component
+} from 'react';
+import {
+  Link
+} from 'react-router-dom';
 
 class Navbar extends Component {
-    render(){
-	return(
-            <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-              <Link to='/' className="navbar-brand>Get All Products"> test </Link>
-              <div className="collapse navbar-collapse">
-                <ul className="navbar-nav mr-auto">
-                  <li className="navbar-item">
-                    <Link to='/all' className="nav-link"> /all - Get Products </Link>
-                  </li>
-                  <li className="navbar-item">
-                    <Link to='/create' className="nav-link"> /create - Add Product </Link>
-                  </li>
-                  <li className="navbar-item">
-                    <Link to='/remove' className="nav-link"> /remove - Remove Product </Link>
-                  </li>
-                  <li className="navbar-item">
-                    <Link to='/edit/12345' className="nav-link"> /edit - Edit Product </Link>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-	);
-    }
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      check: 'NavBar state reached'
+    };
+  };
+
+  render() {
+    return (
+      <div>
+        <h5>NavBar.js is running</h5>
+        <h6>...{this.state.check}</h6>
+
+        <nav>
+          <Link to='/'> test </Link>
+          <div>
+            <ul>
+              <li>
+                <Link to='/getall'> /getall - Get All Products </Link>
+              </li>
+              <li>
+                <Link to='/create'> /create - Add Product </Link>
+              </li>
+              <li>
+                <Link to='/remove'> /remove - Remove Product </Link>
+              </li>
+              <li>
+                <Link to='/edit/12345'> /edit - Edit Product </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    );
+  }
 };
 
 export default Navbar;

@@ -6,7 +6,7 @@ class ModProd extends Component {
     render(){
 	return (
 	    <div>
-              <p> Modify product component </p>
+              <p> Modify product (component) </p>
             </div>
 	);
     };

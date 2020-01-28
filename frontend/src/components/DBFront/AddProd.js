@@ -19,7 +19,7 @@ class AddProd extends Component {
     this.onChangeFrontCover = this.onChangeFrontCover.bind(this);
     this.onChangeBackCover = this.onChangeBackCover.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-      
+
     this.state = {
 
       artist: '',
@@ -32,14 +32,18 @@ class AddProd extends Component {
     }
   };
 
-    componentDidMount(){
-        console.log(' /src/components/DBFront/AddProd.js/ componentDidMount()')
-	this.setState({
-	    products:['test product'], //products is the array of data coming from mongoDB
-	    product:'test product'
-	});
-    };
-    
+  componentDidMount() {
+    console.log('/AddProd.js componentDidMount()...')
+    this.setState({
+      products: ['test product'], //products is the array of data coming from mongoDB
+      product: 'test product'
+    });
+  };
+
+  componentWillUnmount() {
+    console.log('...unmounting AddProd.js');
+  };
+
   onChangeArtist(e) {
     this.setState({
       artist: e.target.value
@@ -76,8 +80,9 @@ class AddProd extends Component {
     });
   };
 
-  onSubmit(e) {
-    e.preventDefault();
+    onSubmit(e) {
+        e.preventDefault();
+        console.log('event:' , e);
     const product = {
       artist: this.state.artist,
       title: this.state.title,
@@ -87,20 +92,24 @@ class AddProd extends Component {
       backcover: this.state.backcover
     };
 
-      console.log('product:' ,  product);
+    console.log('product:', product);
 
-      axios.post('http://localhost:3000/products/createdata/' , product)
-          .then (res => {console.log('res.data' , res.data)})
-          .catch (err =>{console.log('error: ' , err)});  
+    axios.post('http://localhost:3000/products/createdata/', product)
+      .then(res => {
+        console.log('res.data', res.data)
+      })
+      .catch(err => {
+        console.log('error, cannot post data: ', err)
+      });
 
-      //window.location = '/';
+    //window.location = '/';
   };
 
   render() {
     return (
-        <div>
+      <div>
           <div>
-            <p> Add product component </p>
+            <p> Add product (component) </p>
           </div>
           <h4>add new item</h4>
           <form onSubmit={this.onSubmit}>
@@ -165,7 +174,7 @@ class AddProd extends Component {
               </input>
             </div>
             <div>
-              <input name="" type="submit" value="add product"/>
+              <input name="submit" type="submit" value="add product"/>
             </div>
           </form>
         </div>

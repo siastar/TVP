@@ -1,0 +1,1 @@
+ack 'data' --ignore-dir={frontend/node_modules,backend/node_modules,frontend/src/backup,frontend/src/Test,_stuff}
