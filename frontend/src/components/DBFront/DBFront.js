@@ -24,17 +24,17 @@ class DBFront extends React.Component {
 
     //init state  
     this.state = {
-        fileName: 'DBFront.js',
+        compName: 'DBFront.js',
         products:[]
     };
   };
 
    componentDidMount() {
-    console.log(this.state.fileName, ' mounted');
+    console.log(this.state.compName, ' mounted');
    };
 
    componentWillUnmount() {
-   console.log(this.state.fileName, ' unmounted');
+   console.log(this.state.compName, ' unmounted');
    };
     
   //methods  
@@ -47,7 +47,7 @@ class DBFront extends React.Component {
     return (
       <div>
        <div>
-         <h6> rendered {this.state.fileName} </h6>
+         <h6> rendered {this.state.compName} </h6>
          
        </div>
         <Router>

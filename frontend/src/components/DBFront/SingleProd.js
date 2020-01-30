@@ -22,18 +22,18 @@ class SingleProd extends Component {
     this.onRemove = this.onRemove.bind(this);
 
     this.state = {
-      fileName: 'SingleProd.js',
+      compName: 'SingleProd.js',
       product: []
     };
   };
 
   componentDidMount() {
-      console.log(this.state.fileName, ' mounted');
+      console.log(this.state.compName, ' mounted');
 
   };
 
   componentWillUnmount() {
-    console.log(this.state.fileName, ' unmounted');
+    console.log(this.state.compName, ' unmounted');
   };
 
   onEdit(e) {
@@ -70,7 +70,7 @@ class SingleProd extends Component {
       <div>
         <hr/>
         <hr/>
-          {/* <h6> rendered {this.state.fileName} </h6> */}
+          {/* <h6> rendered {this.state.compName} </h6> */}
           <h6>id: {this.props.product._id}</h6>
           <h6>artist: {this.props.product.artist}</h6>
           <h6>title: {this.props.product.title}</h6>

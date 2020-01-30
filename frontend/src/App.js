@@ -21,14 +21,14 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      fileName: 'App.js',
+      compName: 'App.js',
     };
 
     //this.displayData = this.displayData.bind(this);
   };
 
   componentDidMount() {
-    console.log(this.state.fileName, ' mounted...')
+    console.log(this.state.compName, ' mounted...')
   };
 
   render() {
@@ -36,7 +36,7 @@ class App extends React.Component {
     return (
       <div>
         <div>
-          <h6> rendered {this.state.fileName} </h6>
+          <h6> rendered {this.state.compName} </h6>
         </div>
         <DBFront />
       </div>

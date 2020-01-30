@@ -7,24 +7,24 @@ class ClassTemplate extends Component {
     constructor(props){
         super(props);
         this.state = {
-            fileName: 'ClassTemplate.js'
+            compName: 'ClassTemplate.js'
         }
     }
     
     componentDidMount(){
-        console.log(this.state.fileName , ' mounted...')
+        console.log(this.state.compName , ' mounted...')
     }
 
     componentWillUnmount(){
-        console.log(this.state.fileName , ' unmounted...')
+        console.log(this.state.compName , ' unmounted...')
     }
     
     render(){
-	console.log('rendering ', this.state.fileName);
+	console.log('rendering ', this.state.compName);
 	
 	return (
 	<div>
-            <h6> rendered {this.state.fileName} </h6>
+            <h6> rendered {this.state.compName} </h6>
         </div>
 	);
     };

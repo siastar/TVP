@@ -23,7 +23,7 @@ class AddProd extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      fileName: 'AddProd.js',
+      compName: 'AddProd.js',
 
       artist: '',
       title: '',
@@ -36,7 +36,7 @@ class AddProd extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.fileName, ' mounted');
+    console.log(this.state.compName, ' mounted');
     this.setState({
       products: ['test product'], //products is the array of data coming from mongoDB
       product: 'test product'
@@ -44,7 +44,7 @@ class AddProd extends Component {
   };
 
   componentWillUnmount() {
-    console.log(this.state.fileName, ' unmounted');
+    console.log(this.state.compName, ' unmounted');
   };
 
   onChangeArtist(e) {
@@ -112,7 +112,7 @@ class AddProd extends Component {
     return (
       <div>
           <div>
-            <h6> rendered {this.state.fileName} </h6>
+            <h6> rendered {this.state.compName} </h6>
           </div>
       
           <h4>add new item</h4>

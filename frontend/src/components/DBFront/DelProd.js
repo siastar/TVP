@@ -9,23 +9,23 @@ class DelProd extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fileName: 'DelProd.js',
+      compName: 'DelProd.js',
       products: []
     };
   };
 
   componentDidMount() {
-    console.log(this.state.fileName, ' mounted');
+    console.log(this.state.compName, ' mounted');
   };
 
   componentWillUnmount() {
-    console.log(this.state.fileName, ' unmounted');
+    console.log(this.state.compName, ' unmounted');
    };
 
   render() {
     return (
          <div>
-            <h6> rendered {this.state.fileName} </h6>
+            <h6> rendered {this.state.compName} </h6>
         </div>
     );
   };

@@ -12,13 +12,13 @@ class ShowProdsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        fileName: 'ShowProdsList.js',
+        compName: 'ShowProdsList.js',
         products: []
     };
   };
 
     componentDidMount(){
-        console.log(this.state.fileName , ' mounted');
+        console.log(this.state.compName , ' mounted');
     }
     
   render() {
@@ -37,7 +37,7 @@ class ShowProdsList extends Component {
       
       return (
         <div>
-           <h6> rendered {this.state.fileName} </h6>
+           <h6> rendered {this.state.compName} </h6>
           <hr/>
           <div>
             {prodList}

@@ -10,13 +10,13 @@ class ShowAllProds extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fileName: 'SingleProd.js',
+      compName: 'SingleProd.js',
       product: []
     };
   };
 
   componentDidMount() {
-    console.log(this.state.fileName, ' mounted');
+    console.log(this.state.compName, ' mounted');
   };
 
   render() {

@@ -12,19 +12,19 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fileName: 'NavBar.js'
+      compName: 'NavBar.js'
     };
   };
 
   componentDidMount() {
-    console.log(this.state.fileName, ' mounted');
+    console.log(this.state.compName, ' mounted');
   };
 
   render() {
     return (
         <div>
           <div>
-            <h6> rendered {this.state.fileName} </h6>
+            <h6> rendered {this.state.compName} </h6>
           </div>
 
           <nav>

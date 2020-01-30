@@ -12,7 +12,7 @@ class GetAllProds extends Component {
     super(props)
 
     this.state = {
-      fileName: 'GetAllProds.js',
+      compName: 'GetAllProds.js',
       products: []
 
     };
@@ -20,7 +20,7 @@ class GetAllProds extends Component {
 
     componentDidMount() {
       
-        console.log(this.state.fileName , ' mounted...');
+        console.log(this.state.compName , ' mounted...');
         //console.log('received props: ', this.props)
 
         axios.get(getDataRoute)
@@ -45,7 +45,7 @@ class GetAllProds extends Component {
        };
 
     componentWillUnmount() {
-    console.log(this.state.fileName, ' unmounted');
+    console.log(this.state.compName, ' unmounted');
    };
 
     
@@ -54,7 +54,7 @@ class GetAllProds extends Component {
         return (
       <div>
         <div>
-            <h6> rendered {this.state.fileName} </h6>
+            <h6> rendered {this.state.compName} </h6>
         </div>
         
         <div>
