@@ -12,29 +12,38 @@ class AddEditPopUpForm extends Component {
     this.state = {
       fileName: 'AddEditPopUpForm.js'
     }
-  }
+  };
 
   componentDidMount() {
     console.log(this.state.fileName, ' mounted...')
-  }
+  };
 
   componentWillUnmount() {
     console.log(this.state.fileName, ' unmounted...')
-  }
+  };
 
   render() {
-    console.log('rendering ', this.state.fileName);
-    const Popup = () => (
-      <Popup trigger={<button> Trigger</button>} position="right center">
-        <div>Popup content here !!</div>
-      </Popup>
-      );
+
+      console.log('rendering ', this.state.fileName);
+      console.log(this);
+      
+
       return (
-      <div>
-        <Popup />
-        <h6> rendered {this.state.fileName} </h6>
-      </div>
+          <div>
+            <p>popup here!</p>
+            <Popup
+              trigger={<button> Edit </button>}
+              position="right center"
+            >
+              <div>
+                Popup content here !!
+                testing stuff
+              </div>
+            </Popup>
+          </div>
+
     );
+
   };
 };
 

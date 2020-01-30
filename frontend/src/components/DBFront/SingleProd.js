@@ -74,20 +74,14 @@ class SingleProd extends Component {
           <h6>id: {this.props.product._id}</h6>
           <h6>artist: {this.props.product.artist}</h6>
           <h6>title: {this.props.product.title}</h6>
-        <h6>year: {this.props.product.year}</h6>
+          <h6>year: {this.props.product.year}</h6>
 
-        {/* <AddEditPopUpForm */}
-        {/*    onClick={this.onEdit} */}
-        {/* /> */}
+        <AddEditPopUpForm
+          onClick={this.onEdit}/>
         
           <button
             onClick={this.onRemove}
           >remove
-          </button>
-
-        <button
-            onClick={this.onEdit}
-          >edit
           </button>
       </div>
     );
