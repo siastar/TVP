@@ -21,19 +21,24 @@ class App extends React.Component {
   constructor() {
     super()
     this.state = {
-      check: 'App.js state reached',
-     };
+      fileName: 'App.js',
+    };
 
     //this.displayData = this.displayData.bind(this);
   };
 
-   render() {
-    console.log('rendering... ');
+  componentDidMount() {
+    console.log(this.state.fileName, ' mounted...')
+  };
+
+  render() {
+
     return (
       <div>
-        <h5>App.js running...</h5>
-        <h6>...{this.state.check} </h6>
-        <DBFront/>
+        <div>
+          <h6> rendered {this.state.fileName} </h6>
+        </div>
+        <DBFront />
       </div>
     );
   };

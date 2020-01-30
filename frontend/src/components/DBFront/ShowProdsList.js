@@ -4,7 +4,7 @@ import React, {
   Component
 } from 'react';
 
-import ShowSingleProd from './ShowSingleProd.js'
+import SingleProd from './SingleProd.js'
 
 
 class ShowProdsList extends Component {
@@ -12,29 +12,35 @@ class ShowProdsList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      check: 'ShowProdsList state reached'
+        fileName: 'ShowProdsList.js',
+        products: []
     };
   };
-  
+
+    componentDidMount(){
+        console.log(this.state.fileName , ' mounted');
+    }
+    
   render() {
-      //console.log('ShowProdslist this:' , this);
-      const products = this.props.products;
-      //console.log('products: ', products)
+      const DbProducts = this.props.products;
+      console.log('DbProducts' , DbProducts);
+
+      const prodList = DbProducts.map( prod => 
+          <SingleProd
+            
+            key={prod._id}
+            product={prod}
+          />
+      );
+
+      //console.log('prodList--:',prodList);
+      
       return (
         <div>
-          <h6>
-            hello ShowProdsList
-          </h6>
+           <h6> rendered {this.state.fileName} </h6>
+          <hr/>
           <div>
-                   <React.Fragment>
-          <ul>
-            {products.map(list => (
-            <li key={list._id}>
-              {list.artist}, {list.title}
-            </li>
-            ))}
-          </ul>
-        </React.Fragment> 
+            {prodList}
           </div>
         </div>
       );

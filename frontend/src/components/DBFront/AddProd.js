@@ -20,7 +20,8 @@ class AddProd extends Component {
     this.onChangeBackCover = this.onChangeBackCover.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-    this.state = {
+      this.state = {
+      fileName: 'AddProd.js',
 
       artist: '',
       title: '',
@@ -107,10 +108,11 @@ class AddProd extends Component {
 
   render() {
     return (
-      <div>
+        <div>
           <div>
-            <p> Add product (component) </p>
+            <h6> rendered {this.state.fileName} </h6>
           </div>
+      
           <h4>add new item</h4>
           <form onSubmit={this.onSubmit}>
 

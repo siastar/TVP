@@ -1,32 +1,30 @@
 console.log('...opening /src/components/DBFront/DelProd.js');
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 
 class DelProd extends Component {
 
-    constructor(props) {
-	super(props);
-
-	this.onDelete = this.onDelete.bind(this);
-
-	this.state = {
-	    check: 'DelProd.js state reached'
-	};
+  constructor(props) {
+    super(props);
+    this.state = {
+      fileName: 'DelProd.js',
+      products: []
     };
+  };
 
-     componentDidMount(){
-        console.log('/DelProd.js componentDidMount...')
-        
-     };
-    
-    render(){
-	return (
-	    <div>
-		<p> Delete product (component) </p>
-            </div>
-	);
-    };
+  componentDidMount() {
+    console.log(this.state.fileName, ' mounted');
+  };
+
+  render() {
+    return (
+         <div>
+            <h6> rendered {this.state.fileName} </h6>
+        </div>
+    );
+  };
 };
 
 export default DelProd;
-

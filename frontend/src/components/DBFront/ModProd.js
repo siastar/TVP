@@ -3,11 +3,23 @@ console.log('...opening /src/components/DBFront/ModProd.js');
 import React, { Component } from 'react';
 
 class ModProd extends Component {
+
+    constructor(props){
+        super(props);
+        this.state = {
+            fileName: 'ModProd.js'
+        }
+    }
+    
+    componentDidMount(){
+        console.log(this.state.fileName , ' mounted...')
+    }
+    
     render(){
 	return (
-	    <div>
-              <p> Modify product (component) </p>
-            </div>
+	<div>
+            <h6> rendered {this.state.fileName} </h6>
+        </div>
 	);
     };
 };

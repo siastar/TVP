@@ -1,77 +1,70 @@
 console.log('...opening /src/components/DBFront/GetAllProds.js');
 
-import React, {
-  Component
-} from 'react';
-
+import React, { Component } from 'react';
 import axios from 'axios';
-
 import ShowProdsList from './ShowProdsList.js'
 
-import TestingStuff from './TestingStuff.js'
+const getDataRoute = 'http://localhost:3000/products/getdata/'; //server side address
 
-const getRoute = 'http://localhost:3000/products/getdata/';
-
-class GetAllProd extends Component {
+class GetAllProds extends Component {
 
   constructor(props) {
     super(props)
 
-    //binding
-    //this.onSubmit = this.onSubmit.bind(this);
-
     this.state = {
-      check: 'getAllProds.js state reached',
+      fileName: 'GetAllProds.js',
       products: []
 
     };
   };
 
-  componentDidMount() {
-      console.log('componentDidMount...');
-      axios.get(getRoute)
+    componentDidMount() {
+      
+        console.log(this.state.fileName , ' mounted...');
+        //console.log('received props: ', this.props)
+
+        axios.get(getDataRoute)
           .then(res => {
-              console.log('DB content: ', res.data.allProds);
+              const fetchedData = res.data.allProds;
+              console.log('DB fetched data: ', fetchedData);
               //allProds is defined in backend ProductsRoute.js and comes in via axios 
-              if (res.data.allProds.length > 0){ //check if there is at least 1 element in the array
+              if (fetchedData.length > 0){ //check if there is at least 1 element in the array
                   this.setState({
-                      products: res.data.allProds
-                      
+                      products: fetchedData
                   });
-                  console.log('checkstate:' , this.state.products);
+                  
               }
-              
               else {
-                  console.log('no items found');                 
+                  console.log('no items found, maybe DB is empty?');                 
               };
-                            
           })
       
           .catch(err => {
               console.log('error fetching DB' , err)
           });
-      console.log('state after CDM' , this.state);
-  };
+       };
 
   componentWillUnmount() {
-    console.log('...unmounting GetAllProd.js');
+    console.log('...GetAllProds.js unmounted');
   };
 
+    
     render() {
-    console.log('product list in rendering process...' , this.state.products)
-    return (
+        
+        return (
       <div>
         <div>
-          <p> Get all products (component) </p>
+            <h6> rendered {this.state.fileName} </h6>
         </div>
+        
         <div>
-          <TestingStuff/>
           <hr/>
-          <ShowProdsList products={this.state.products}/>
+          <ShowProdsList products={this.state.products}/> {/* pass props to child */}
+          <hr/>
         </div>
       </div>
     );
   };
 };
 
-export default GetAllProd;
+export default GetAllProds;

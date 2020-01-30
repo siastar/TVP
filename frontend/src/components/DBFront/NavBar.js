@@ -12,37 +12,44 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      check: 'NavBar state reached'
+      fileName: 'NavBar.js'
     };
+  };
+
+  componentDidMount() {
+    console.log(this.state.fileName, ' mounted');
   };
 
   render() {
     return (
-      <div>
-        <h5>NavBar.js is running</h5>
-        <h6>...{this.state.check}</h6>
-
-        <nav>
-          <Link to='/'> test </Link>
+        <div>
           <div>
-            <ul>
-              <li>
-                <Link to='/getall'> /getall - Get All Products </Link>
-              </li>
-              <li>
-                <Link to='/create'> /create - Add Product </Link>
-              </li>
-              <li>
-                <Link to='/remove'> /remove - Remove Product </Link>
-              </li>
-              <li>
-                <Link to='/edit/12345'> /edit - Edit Product </Link>
-              </li>
-            </ul>
+            <h6> rendered {this.state.fileName} </h6>
           </div>
-        </nav>
-      </div>
-    );
+
+          <nav>
+            <Link to='/'> reset </Link>
+            <div>
+              <ul>
+                <li>
+                  <Link to='/showall'> /showall - Show All Products </Link>
+                </li>
+                <li>
+                  <Link to='/getall'> /getall - Get All Products </Link>
+                </li>
+                <li>
+                  <Link to='/create'> /create - Add Product </Link>
+                </li>
+                <li>
+                  <Link to='/remove/12345'> /remove - Remove Product </Link>
+                </li>
+                <li>
+                  <Link to='/edit/12345'> /edit - Edit Product </Link>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>    );
   }
 };
 
