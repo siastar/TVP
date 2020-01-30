@@ -6,7 +6,7 @@ import React, {
 
 import axios from 'axios';
 
-const createDataRoute ='http://localhost:3000/products/createdata/';
+const createDataRoute = 'http://localhost:3000/products/createdata/';
 
 class AddProd extends Component {
 
@@ -22,7 +22,7 @@ class AddProd extends Component {
     this.onChangeBackCover = this.onChangeBackCover.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
-      this.state = {
+    this.state = {
       fileName: 'AddProd.js',
 
       artist: '',
@@ -43,9 +43,9 @@ class AddProd extends Component {
     });
   };
 
-    componentWillUnmount() {
+  componentWillUnmount() {
     console.log(this.state.fileName, ' unmounted');
-   };
+  };
 
   onChangeArtist(e) {
     this.setState({
@@ -83,9 +83,9 @@ class AddProd extends Component {
     });
   };
 
-    onSubmit(e) {
-        e.preventDefault();
-        console.log('event:' , e);
+  onSubmit(e) {
+    e.preventDefault();
+    console.log('event:', e);
     const product = {
       artist: this.state.artist,
       title: this.state.title,
@@ -110,7 +110,7 @@ class AddProd extends Component {
 
   render() {
     return (
-        <div>
+      <div>
           <div>
             <h6> rendered {this.state.fileName} </h6>
           </div>

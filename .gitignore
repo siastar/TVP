@@ -1,6 +1,6 @@
 ## See
 ## https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-##https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
+## https://stackoverflow.com/questions/987142/make-gitignore-ignore-everything-except-a-few-files
 ##
 ## a friendly reminder:
 ## git init
@@ -8,6 +8,9 @@
 ## git commit -m "first commit"
 ## git remote add origin https://github.com/username/repositoryname.git
 ## git push -u origin master
+## with double wildcard (**) you can ignore folders indipendently of where they're nested
+
+############################### ROCK N' ROLL ####################################################
 
 ## custom ##
 
@@ -40,6 +43,7 @@
 *_old.*
 /*_old
 /_stuff
+**/testingstuff
 
 ## misc
 .DS_Store
