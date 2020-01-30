@@ -46,6 +46,11 @@ class Navbar extends Component {
                 <li>
                   <Link to='/edit/12345'> /edit - Edit Product </Link>
                 </li>
+                <li>
+                  <Link to='/testingstuff'> /testingstuff - Test Stuff </Link>
+                </li>
+
+                
               </ul>
             </div>
           </nav>

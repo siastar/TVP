@@ -5,8 +5,11 @@ import React, {
 } from 'react';
 
 import axios from 'axios';
+import AddEditPopUpForm from './AddEditPopUpForm.js';
 
 const createDataRoute = 'http://localhost:3000/products/createdata/';
+const editDataRoute = 'http://localhost:3000/products/createdata/';
+const currentRoute = '';
 
 class AddProd extends Component {
 
@@ -24,13 +27,15 @@ class AddProd extends Component {
 
     this.state = {
       compName: 'AddProd.js',
-
-      artist: '',
-      title: '',
-      year: '',
-      price: '',
-      frontcover: '',
-      backcover: ''
+      switcher: null,
+      product: {
+        artist: '',
+        title: '',
+        year: '',
+        price: '',
+        frontcover: '',
+        backcover: ''
+      },
 
     }
   };
@@ -38,8 +43,8 @@ class AddProd extends Component {
   componentDidMount() {
     console.log(this.state.compName, ' mounted');
     this.setState({
-      products: ['test product'], //products is the array of data coming from mongoDB
-      product: 'test product'
+      products: ['no data yet...'], //products is the array of data coming from mongoDB
+      product: 'no data yet...'
     });
   };
 
@@ -107,80 +112,93 @@ class AddProd extends Component {
 
     //window.location = '/';
   };
-
   render() {
+    console.log('AddProd.js this', this);
     return (
       <div>
-          <div>
-            <h6> rendered {this.state.compName} </h6>
-          </div>
+          <AddEditPopUpForm
+            onChangeArtist={this.onChangeArtist}
+            onChangeTitle={this.onChangeTitle}
+            onChangeYear={this.onChangeYear}
+            onChangePrice={this.onChangeProce}
+            onChangeFrontCover={this.onChangeFrontCover}
+            onChangeBackCover={this.onChangeBackCover}
+            
+          >
+          </AddEditPopUpForm>
+
+
+          
+          {/* <div> */}
+          {/*   <h6> rendered {this.state.compName} </h6> */}
+          {/* </div> */}
       
-          <h4>add new item</h4>
-          <form onSubmit={this.onSubmit}>
+          {/* <h4>add new item</h4> */}
+          {/* <form onSubmit={this.onSubmit}> */}
 
-            <div>
-              <label>artist: </label>
-              <input
-                type="text"
-                required
-                value={this.state.artist}
-                onChange={this.onChangeArtist}>
-              </input>
-            </div>
+          {/*   <div> */}
+          {/*     <label>artist: </label> */}
+          {/*     <input */}
+          {/*       type="text" */}
+          {/*       required */}
+          {/*       value={this.state.artist} */}
+          {/*       onChange={this.onChangeArtist}> */}
+          {/*     </input> */}
+          {/*   </div> */}
 
-            <div>
-              <label>title: </label>
-              <input
-                type="text"
-                required
-                value={this.state.title}
-                onChange={this.onChangeTitle}>
-              </input>
-            </div>
+          {/*   <div> */}
+          {/*     <label>title: </label> */}
+          {/*     <input */}
+          {/*       type="text" */}
+          {/*       required */}
+          {/*       value={this.state.title} */}
+          {/*       onChange={this.onChangeTitle}> */}
+          {/*     </input> */}
+          {/*   </div> */}
 
-            <div>
-              <label>year: </label>
-              <input
-                type="text"
-                required
-                value={this.state.year}
-                onChange={this.onChangeYear}>
-              </input>
-            </div>
+          {/*   <div> */}
+          {/*     <label>year: </label> */}
+          {/*     <input */}
+          {/*       type="text" */}
+          {/*       required */}
+          {/*       value={this.state.year} */}
+          {/*       onChange={this.onChangeYear}> */}
+          {/*     </input> */}
+          {/*   </div> */}
 
-            <div>
-              <label>price: </label>
-              <input
-                type="text"
-                required
-                value={this.state.price}
-                onChange={this.onChangePrice}>
-              </input>
-            </div>
+          {/*   <div> */}
+          {/*     <label>price: </label> */}
+          {/*     <input */}
+          {/*       type="text" */}
+          {/*       required */}
+          {/*       value={this.state.price} */}
+          {/*       onChange={this.onChangePrice}> */}
+          {/*     </input> */}
+          {/*   </div> */}
 
-            <div>
-              <label>frontcover: </label>
-              <input
-                type="text"
-                required
-                value={this.state.frontcover}
-                onChange={this.onChangeFrontCover}>
-              </input>
-            </div>
+          {/*   <div> */}
+          {/*     <label>frontcover: </label> */}
+          {/*     <input */}
+          {/*       type="text" */}
+          {/*       required */}
+          {/*       value={this.state.frontcover} */}
+          {/*       onChange={this.onChangeFrontCover}> */}
+          {/*     </input> */}
+          {/*   </div> */}
 
-            <div>
-              <label>backcover: </label>
-              <input
-                type="text"
-                required
-                value={this.state.backcover}
-                onChange={this.onChangeBackCover}>
-              </input>
-            </div>
-            <div>
-              <input name="submit" type="submit" value="add product"/>
-            </div>
-          </form>
+          {/*   <div> */}
+          {/*     <label>backcover: </label> */}
+          {/*     <input */}
+          {/*       type="text" */}
+          {/*       required */}
+          {/*       value={this.state.backcover} */}
+          {/*       onChange={this.onChangeBackCover}> */}
+          {/*     </input> */}
+          {/*   </div> */}
+          {/*   <div> */}
+          {/*     <input name="submit" type="submit" value="add product"/> */}
+          {/*   </div> */}
+          {/* </form> */}
         </div>
     );
   };
