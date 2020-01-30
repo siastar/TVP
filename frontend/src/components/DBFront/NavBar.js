@@ -22,39 +22,45 @@ class Navbar extends Component {
 
   render() {
     return (
+      <div>
         <div>
-          <div>
-            <h6> rendered {this.state.compName} </h6>
-          </div>
-
-          <nav>
-            <Link to='/'> reset </Link>
-            <div>
-              <ul>
-                <li>
-                  <Link to='/showall'> /showall - Show All Products </Link>
-                </li>
-                <li>
-                  <Link to='/getall'> /getall - Get All Products </Link>
-                </li>
-                <li>
-                  <Link to='/create'> /create - Add Product </Link>
-                </li>
-                <li>
-                  <Link to='/remove/12345'> /remove - Remove Product </Link>
-                </li>
-                <li>
-                  <Link to='/edit/12345'> /edit - Edit Product </Link>
-                </li>
-                <li>
-                  <Link to='/testingstuff'> /testingstuff - Test Stuff </Link>
-                </li>
-
-                
-              </ul>
-            </div>
-          </nav>
+          <h6> rendered {this.state.compName} </h6>
         </div>
+
+        <nav>
+          <Link to='/'> reset </Link>
+          <div>
+            <ul>
+
+              <li>
+                <Link to='/showall'> /showall - Show All Products </Link>
+              </li>
+
+              <li>
+                <Link to='/getall'> /getall - Get All Products </Link>
+              </li>
+
+              <li>
+                <Link to='/create'> /create - Add Product </Link>
+              </li>
+
+              <li>
+                <Link to='/edit/'> /edit - Edit Product </Link>
+              </li>
+
+              <li>
+              <Link to='/remove/12345'> /remove - Remove Product </Link>
+              </li>
+
+              <li>
+                <Link to='/testingstuff'> /testingstuff - Test Stuff </Link>
+              </li>
+
+
+            </ul>
+          </div>
+        </nav>
+      </div>
     );
   }
 };

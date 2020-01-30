@@ -1,8 +1,8 @@
 console.log('opening --->');
 
-import React, {
-  Component
-} from 'react';
+//this component creates a popup form used to add a new product or to edit an existing one
+
+import React, {  Component} from 'react';
 import Popup from "reactjs-popup";
 
 class AddEditPopUpForm extends Component {
@@ -26,11 +26,26 @@ class AddEditPopUpForm extends Component {
 
       console.log('rendering ', this.state.compName);
       console.log('AddEditPopUpForm this:' , this);
-      
+
+      // const action = this.props.action;
+      // console.log('action: ', action);
+      // let buttonLabel ='';
+
+      // switch(action){
+          
+      // case 'modprod':
+      //     buttonLabel = 'Edit Product';
+      //     break;
+      // case 'addprod':
+      //     buttonLabel = 'Add Product';
+      //     break;
+      // default: console.log('buttonLabel is undefined');
+      // }
+
       return (
           <div>
-            <p>popup here!</p>
-            <Popup trigger={<button> Edit </button>}
+            <p>action: {this.props.action}</p>
+            <Popup trigger={<button> {this.props.buttonlabel} </button>}
               position="right center"
               >
               <div>

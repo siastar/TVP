@@ -7,11 +7,11 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; //defin
 //import Popup from "reactjs-popup";
 
 import NavBar from './NavBar.js';
-import AddProd from './AddProd.js';
-import ModProd from './ModProd.js';
+import AddModProd from './AddModProd.js';
+//import ModProd from './ModProd.js';
 import DelProd from './DelProd.js';
 import GetAllProds from './GetAllProds.js';
-import ShowAllProds from './ShowAllProds.js';
+//import ShowAllProds from './ShowAllProds.js';
 //import axios from 'axios';
 //import AddEditPopUpForm from './AddEditPopUpForm.js'
 import TestStuff_03 from './testingstuff/TestingStuff_03.js' 
@@ -47,23 +47,25 @@ class DBFront extends React.Component {
     //console.log('DBFront this: ', this);
     return (
       <div>
-       <div>
-         <h6> --- rendered {this.state.compName} </h6>
-         
-       </div>
+        <div>
+          <h6> --- rendered {this.state.compName} </h6>
+
+        </div>
         <Router>
           <NavBar />
-          <Route path='/showall' component={ShowAllProds} /> {/* hitting the route calls the relative component */}
+          {/*
+          <Route path='/showall' component={ShowAllProds} /> {/\* hitting the route calls the relative component *\/} */}
           <Route path='/getall' component={GetAllProds} /> {/* hitting the route calls the relative component */}
-          <Route path='/create' component={AddProd} />
-          <Route path='/edit/:id' component={ModProd} />
+
           <Route path='/remove/:id' component={DelProd} />
 
-          <Route path='/testingstuff'
-                 render={(props)=> <TestStuff_03 {...props} greetings={'hallo I am a prop!'}/>}/>
+          <Route path='/create/' render={(props)=> <AddModProd {...props} action={'addprod'} btnlabel={'Add Product'}/>}/>
+
+          <Route path='/edit/' render={(props)=> <AddModProd {...props} action={'modprod'} btnlabel={'Edit Product'} />}/>
+
+          <Route path='/testingstuff/' render={(props)=> <TestStuff_03 {...props} greetings={'hallo I am a prop!'} />}/>
         </Router>
-      </div>
-    );
+      </div>    );
   };
 };
 
