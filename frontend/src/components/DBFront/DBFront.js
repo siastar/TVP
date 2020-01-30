@@ -29,6 +29,10 @@ class DBFront extends React.Component {
    componentDidMount() {
     console.log(this.state.fileName, ' mounted');
    };
+
+   componentWillUnmount() {
+   console.log(this.state.fileName, ' unmounted');
+   };
     
   //methods  
     testMethod(){

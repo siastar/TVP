@@ -44,9 +44,9 @@ class GetAllProds extends Component {
           });
        };
 
-  componentWillUnmount() {
-    console.log('...GetAllProds.js unmounted');
-  };
+    componentWillUnmount() {
+    console.log(this.state.fileName, ' unmounted');
+   };
 
     
     render() {

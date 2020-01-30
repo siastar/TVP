@@ -6,6 +6,8 @@ import React, {
 
 import axios from 'axios';
 
+const createDataRoute ='http://localhost:3000/products/createdata/';
+
 class AddProd extends Component {
 
   constructor(props) {
@@ -34,16 +36,16 @@ class AddProd extends Component {
   };
 
   componentDidMount() {
-    console.log('/AddProd.js componentDidMount()...')
+    console.log(this.state.fileName, ' mounted');
     this.setState({
       products: ['test product'], //products is the array of data coming from mongoDB
       product: 'test product'
     });
   };
 
-  componentWillUnmount() {
-    console.log('...unmounting AddProd.js');
-  };
+    componentWillUnmount() {
+    console.log(this.state.fileName, ' unmounted');
+   };
 
   onChangeArtist(e) {
     this.setState({
@@ -95,7 +97,7 @@ class AddProd extends Component {
 
     console.log('product:', product);
 
-    axios.post('http://localhost:3000/products/createdata/', product)
+    axios.post(createDataRoute, product)
       .then(res => {
         console.log('res.data', res.data)
       })

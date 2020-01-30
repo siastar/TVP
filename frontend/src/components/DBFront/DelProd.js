@@ -18,6 +18,10 @@ class DelProd extends Component {
     console.log(this.state.fileName, ' mounted');
   };
 
+  componentWillUnmount() {
+    console.log(this.state.fileName, ' unmounted');
+   };
+
   render() {
     return (
          <div>
