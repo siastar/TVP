@@ -59,9 +59,10 @@ class DBFront extends React.Component {
 
           <Route path='/remove/:id' component={DelProd} />
 
-          <Route path='/create/' render={(props)=> <AddModProd {...props} action={'addprod'} btnlabel={'Add Product'}/>}/>
+          {/* passing down props via React router ->  https://learnwithparam.com/blog/how-to-pass-props-in-react-router/ */}
+          <Route path='/create/' render={(props)=> <AddModProd {...props} action={'addprod'} buttonlabel={'Add Product'}/>}/>
 
-          <Route path='/edit/' render={(props)=> <AddModProd {...props} action={'modprod'} btnlabel={'Edit Product'} />}/>
+          <Route path='/edit/' render={(props)=> <AddModProd {...props} action={'modprod'} buttonlabel={'Edit Product'} />}/>
 
           <Route path='/testingstuff/' render={(props)=> <TestStuff_03 {...props} greetings={'hallo I am a prop!'} />}/>
         </Router>

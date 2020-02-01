@@ -22,10 +22,14 @@ class AddEditPopUpForm extends Component {
     console.log(this.state.compName, ' unmounted...')
   };
 
+  // sendTestToParent(){
+  //     this.props.parentCallback('oh you!');
+  //   }  
+    
   render() {
 
       console.log('rendering ', this.state.compName);
-      console.log('AddEditPopUpForm this:' , this);
+      console.log('this...' , this);
 
       // const action = this.props.action;
       // console.log('action: ', action);
@@ -44,50 +48,68 @@ class AddEditPopUpForm extends Component {
 
       return (
           <div>
-            <p>action: {this.props.action}</p>
-            <Popup trigger={<button> {this.props.buttonlabel} </button>}
-              position="right center"
-              >
+            <Popup trigger={<button> {this.props.buttonlabel} </button>} //button label changes according to the parent component
+                   position="right center"
+            >
               <div>
-                <form onSubmit={this.onSubmit}>
-
+                <form onSubmit={this.props.onFormSubmit}>
+                  
                   <div>
                     <label>artist: </label>
-                    <input type="text" required value={this.state.artist} onChangeArtist={this.onChangeArtist}>
+                    <input type="text"
+                           required
+                           value={this.props.artist}
+                           onChange={this.props.onChangeArtist}
+                    >
                     </input>
                   </div>
-
+                  
                   <div>
                     <label>title: </label>
-                    <input type="text" required value={this.state.title} onChangeTitle={this.onChangeTitle}>
+                    <input type="text"
+                           required
+                           value={this.props.title}
+                           onChange={this.props.onChangeTitle}>
                     </input>
                   </div>
 
                   <div>
                     <label>year: </label>
-                    <input type="text" required value={this.state.year} onChange={this.onChangeYear}>
+                    <input type="text"
+                           required
+                           value={this.props.year}
+                           onChange={this.props.onChangeYear}>
                     </input>
                   </div>
 
                   <div>
                     <label>price: </label>
-                    <input type="text" required value={this.state.price} onChange={this.onChangePrice}>
+                    <input type="text"
+                           required value={this.props.price}
+                           onChange={this.props.onChangePrice}>
                     </input>
                   </div>
 
                   <div>
                     <label>frontcover: </label>
-                    <input type="text" required value={this.state.frontcover} onChange={this.onChangeFrontCover}>
+                    <input type="text"
+                           required
+                           value={this.props.frontcover}
+                           onChange={this.props.onChangeFrontCover}>
                     </input>
                   </div>
 
                   <div>
                     <label>backcover: </label>
-                    <input type="text" required value={this.state.backcover} onChange={this.onChangeBackCover}>
+                    <input type="text"
+                           required
+                           value={this.props.backcover}
+                           onChange={this.props.onChangeBackCover}>
                     </input>
                   </div>
+                  
                   <div>
-                    <input name="submit" type="submit" value="add product" />
+                    <input type="submit" value="Submit" />
                   </div>
                 </form>
               </div>
