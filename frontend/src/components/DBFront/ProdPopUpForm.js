@@ -5,12 +5,12 @@ console.log('opening --->');
 import React, {  Component} from 'react';
 import Popup from "reactjs-popup";
 
-class AddEditPopUpForm extends Component {
+class ProdPopUpForm extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      compName: 'AddEditPopUpForm.js'
+      compName: 'prodPopUpForm.js'
     }
   };
 
@@ -30,21 +30,7 @@ class AddEditPopUpForm extends Component {
 
       console.log('rendering ', this.state.compName);
       console.log('this...' , this);
-
-      // const action = this.props.action;
-      // console.log('action: ', action);
-      // let buttonLabel ='';
-
-      // switch(action){
-          
-      // case 'modprod':
-      //     buttonLabel = 'Edit Product';
-      //     break;
-      // case 'addprod':
-      //     buttonLabel = 'Add Product';
-      //     break;
-      // default: console.log('buttonLabel is undefined');
-      // }
+      
 
       return (
           <div>
@@ -59,6 +45,7 @@ class AddEditPopUpForm extends Component {
                     <input type="text"
                            required
                            value={this.props.artist}
+                           placeholder={this.props.product.artist || 'artist'}
                            onChange={this.props.onChangeArtist}
                     >
                     </input>
@@ -69,6 +56,7 @@ class AddEditPopUpForm extends Component {
                     <input type="text"
                            required
                            value={this.props.title}
+                           placeholder={this.props.product.title || 'title'}
                            onChange={this.props.onChangeTitle}>
                     </input>
                   </div>
@@ -78,6 +66,7 @@ class AddEditPopUpForm extends Component {
                     <input type="text"
                            required
                            value={this.props.year}
+                           placeholder={this.props.product.year || 'year'}
                            onChange={this.props.onChangeYear}>
                     </input>
                   </div>
@@ -86,6 +75,7 @@ class AddEditPopUpForm extends Component {
                     <label>price: </label>
                     <input type="text"
                            required value={this.props.price}
+                           placeholder={this.props.product.price || 'price'}
                            onChange={this.props.onChangePrice}>
                     </input>
                   </div>
@@ -95,6 +85,7 @@ class AddEditPopUpForm extends Component {
                     <input type="text"
                            required
                            value={this.props.frontcover}
+                           placeholder={this.props.product.frontcover || 'front cover'}
                            onChange={this.props.onChangeFrontCover}>
                     </input>
                   </div>
@@ -104,6 +95,7 @@ class AddEditPopUpForm extends Component {
                     <input type="text"
                            required
                            value={this.props.backcover}
+                           placeholder={this.props.product.backcover || 'back cover'}
                            onChange={this.props.onChangeBackCover}>
                     </input>
                   </div>
@@ -120,4 +112,4 @@ class AddEditPopUpForm extends Component {
   };
 };
 
-export default AddEditPopUpForm;
+export default ProdPopUpForm;

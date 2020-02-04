@@ -1,4 +1,4 @@
-console.log('openin DBFront.js...');
+console.log('openin...');
 
 import React from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; //defines client routes (express style)
@@ -7,16 +7,19 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; //defin
 //import Popup from "reactjs-popup";
 
 import NavBar from './NavBar.js';
-import AddModProd from './AddModProd.js';
-//import ModProd from './ModProd.js';
+import AddProd from './AddProd.js';
+import EditProd from './EditProd.js';
 import DelProd from './DelProd.js';
 import GetAllProds from './GetAllProds.js';
 //import ShowAllProds from './ShowAllProds.js';
 //import axios from 'axios';
-//import AddEditPopUpForm from './AddEditPopUpForm.js'
-import TestStuff_03 from './testingstuff/TestingStuff_03.js' 
+
+//import TestStuff_03 from './testingstuff/TestingStuff_03.js' 
 
 const getDataRoute = 'http://localhost:3000/products/getdata/'; //server side address
+const postDataRoute = '';
+const putDataRoute = '';
+const delDataRoute = '';
 
 class DBFront extends React.Component {
 
@@ -53,20 +56,19 @@ class DBFront extends React.Component {
         </div>
         <Router>
           <NavBar />
-          {/*
-          <Route path='/showall' component={ShowAllProds} /> {/\* hitting the route calls the relative component *\/} */}
-          <Route path='/getall' component={GetAllProds} /> {/* hitting the route calls the relative component */}
-
-          <Route path='/remove/:id' component={DelProd} />
 
           {/* passing down props via React router ->  https://learnwithparam.com/blog/how-to-pass-props-in-react-router/ */}
-          <Route path='/create/' render={(props)=> <AddModProd {...props} action={'addprod'} buttonlabel={'Add Product'}/>}/>
+          <Route path='/create/' render={(props)=> <AddProd {...props} actiontype={'addprod'} buttonlabel={'Add Product'}/>}/>
+          
+          <Route path='/getall' component={GetAllProds} /> {/* hitting the route calls the relative component */}
 
-          <Route path='/edit/' render={(props)=> <AddModProd {...props} action={'modprod'} buttonlabel={'Edit Product'} />}/>
+          <Route path='/remove/' component={DelProd} />
 
-          <Route path='/testingstuff/' render={(props)=> <TestStuff_03 {...props} greetings={'hallo I am a prop!'} />}/>
+          <Route path='/edit/' render={(props)=> <EditProd {...props} actiontype={'modprod'} buttonlabel={'Edit Product'} />}/>
+       
         </Router>
-      </div>    );
+      </div>
+    );
   };
 };
 

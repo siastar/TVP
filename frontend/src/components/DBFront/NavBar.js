@@ -1,11 +1,7 @@
 console.log('...opening src/components/DBFront/Navbar.js')
 
-import React, {
-  Component
-} from 'react';
-import {
-  Link
-} from 'react-router-dom';
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
 
@@ -32,9 +28,9 @@ class Navbar extends Component {
           <div>
             <ul>
 
-              <li>
-                <Link to='/showall'> /showall - Show All Products </Link>
-              </li>
+              {/* <li> */}
+              {/*   <Link to='/showall'> /showall - Show All Products </Link> */}
+              {/* </li> */}
 
               <li>
                 <Link to='/getall'> /getall - Get All Products </Link>
@@ -52,9 +48,9 @@ class Navbar extends Component {
               <Link to='/remove/12345'> /remove - Remove Product </Link>
               </li>
 
-              <li>
-                <Link to='/testingstuff'> /testingstuff - Test Stuff </Link>
-              </li>
+              {/* <li> */}
+              {/*   <Link to='/testingstuff'> /testingstuff - Test Stuff </Link> */}
+              {/* </li> */}
 
 
             </ul>
