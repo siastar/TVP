@@ -29,8 +29,10 @@ class ShowProdsList extends Component {
       const showList = DbProducts.map( (product) => 
           <SingleProd
              key={product._id}
-            product={product}
+             product={product}
+             deleteProd={this.props.deleteProd}
             updateProdsList={this.props.updateProdsList}
+            handleCRUDType={this.props.handleCRUDType}
           />
       );
       
