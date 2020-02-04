@@ -44,18 +44,22 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import ShowProdsList from './ShowProdsList.js'
 
-const getDataRoute = 'http://localhost:3000/products/getdata/'; //server side address
+const getDataRoute = 'http://localhost:3000/products/getdata/'; //server side address TODO avoid hard coding
 
 class GetAllProds extends Component {
 
   constructor(props) {
-    super(props)
+      super(props)
 
-    this.state = {
-      compName: 'GetAllProds.js',
-      products: []
+      this.updateProdsList = this.updateProdsList.bind(this);
 
-    };
+      this.state = {
+          testProperty: 'test prop 0',
+          compName: 'GetAllProds.js',
+          products: []
+
+      };
+      
   };
 
     componentDidMount() {
@@ -74,7 +78,7 @@ class GetAllProds extends Component {
                       //fetched data are pushed into the state array "products"
                       //now state.products contains the DB data
                   });
-                  
+                 
               }
               else {
                   console.log('no items found, maybe DB is empty?');                 
@@ -90,10 +94,15 @@ class GetAllProds extends Component {
     console.log(this.state.compName, ' unmounted');
    };
 
-    removeProduct(value){
+    //this function manipulates the state so it MUST be bound in the constructor
+    updateProdsList(productToRemoveId){
          // this.setState({ products: productToRemove
          // })
-        console.log('removeProduct Parent reached' , value);
+        console.log('parent received _id: ' , productToRemoveId);
+        console.log('this ', this);
+        //
+        // now we need to remove the product from products (this.products)
+       
     }; 
     
     render() {
@@ -108,7 +117,7 @@ class GetAllProds extends Component {
           <hr/>
           <ShowProdsList
             products={this.state.products}
-            removeProduct={this.removeProduct}/>
+            updateProdsList={this.updateProdsList}/>
             {/* pass the products list and the method to remove products,  */}
             {/* as props to its child  ShowProdsList */}
           <hr/>

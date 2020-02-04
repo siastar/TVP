@@ -30,7 +30,7 @@ class ShowProdsList extends Component {
           <SingleProd
              key={product._id}
             product={product}
-            removeProduct={this.props.removeProduct}
+            updateProdsList={this.props.updateProdsList}
           />
       );
       

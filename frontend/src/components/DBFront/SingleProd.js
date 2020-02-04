@@ -4,7 +4,9 @@
 
 console.log('...opening')
 
-import React, { Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import axios from 'axios';
 import Popup from "reactjs-popup";
 //import { Link } from 'react-router-dom';
@@ -25,23 +27,27 @@ class SingleProd extends Component {
     this.onRemove = this.onRemove.bind(this);
 
     this.state = {
-        compName: 'SingleProd.js',
-        errorToHandle: false,
-        product: []
+      compName: 'SingleProd.js',
+      errorToHandle: false,
+      product: []
     };
   };
 
   componentDidMount() {
     console.log(this.state.compName, ' mounted');
-      //copy the single product data in the component state
-      this.setState({
-          product: this.props.product
-      });
-      console.log(this.state);
+    //copy the single product data in the component state
+    this.setState({
+      product: this.props.product
+    });
+    console.log(this.state);
   };
 
   componentWillUnmount() {
     console.log(this.state.compName, ' unmounted');
+  };
+
+  testMethod() {
+    console.log('test method ok')
   };
 
   onEdit(e) { //triggered by clicking EDIT button
@@ -49,18 +55,17 @@ class SingleProd extends Component {
     console.log('product MongoDB _id: ', this.props.product._id);
     e.preventDefault();
     const itemToEdit = (updateDataRoute + this.props.product._id);
-    console.log ('...editing: ' , itemToEdit);
+    console.log('...editing: ', itemToEdit);
   };
 
-
- onRemove() { //triggered by clicking REMOVE button
+  onRemove() { //triggered by clicking REMOVE button
     console.log('remove button clicked');
     console.log('product MongoDB _id: ', this.props.product._id);
 
-  // onRemove(e) { //triggered by clicking REMOVE button
-  //   console.log('remove button clicked' , e);
-  //   console.log('product MongoDB _id: ', this.props.product._id);
-  //   e.preventDefault();
+    // onRemove(e) { //triggered by clicking REMOVE button
+    //   console.log('remove button clicked' , e);
+    //   console.log('product MongoDB _id: ', this.props.product._id);
+    //   e.preventDefault();
 
     const itemToDelete = (deleteDataRoute + this.props.product._id);
     //gives Express server the link of item to delete
@@ -79,38 +84,36 @@ class SingleProd extends Component {
       .catch(err => {
         console.log('error, cannot remove data: ', err)
       });
-    };
-    // NOTE:
-    // at this point the DB has been modified but 
-    // the DB change will not be reflected on the visualization until the page is reloaded
-    // in order to have an immediate visualization we operate both on the component state and the database. 
-    // To update the state of the parent GetAllProds we need to send up to the parent the product id we
-    // used to remove the same product from DB which is this.props.product._id
-    // 
-   
-    sendProductIdToParent = () => {
-        //this.props.removeProduct(this.props.product._id);
-        this.props.removeProduct('test!!!!!');
-        console.log('triggered');
+  };
+  // NOTE:
+  // at this point the DB has been modified but 
+  // the DB change will not be reflected on the visualization until the page is reloaded
+  // in order to have an immediate visualization we operate both on the component state and the database. 
+  // To update the state of the parent GetAllProds we need to send up to the parent the product id we
+  // used to remove the same product from DB which is this.props.product._id
+
+  // sendProductIdToéarent takes the value  this.props.product._id and send it to the parent GetAllProds.js
+  // which will use it to update its state and remove the product already removed from DB, from DOM too
+  // in this way what shown in DOM will reflect what present in DB, without need of refreshing/reloading
+  // data from DB
+
+  sendProductIdToParent = () => {
+    this.props.updateProdsList(this.props.product._id);
+    console.log('sendProductIdToParent triggered');
   };
 
-    testMethod1(){console.log('test 1 ok')};
-    
-    testMethod2(){console.log('test 2 ok')};
+  //when Remove button is clicked 2 events are triggered
+  //onRemove actually removes data from DB
+  //sendProductId send the removed product ID to GetAllProducts so that the state can be updated
+  //and the correct list displayed withou reloading the page
+  //
+  //to send data to parent I find convenient to use arrow function but once data has been reached
+  //by parent I will not use arrows to update the state so the relative function removeProduct is bound
+  //in the class constructor
 
-    
-    //when Remove button is clicked 2 events are triggered
-    //onRemove actually removes data from DB
-    //sendProductId send the removed product ID to GetAllProducts so that the state can be updated
-    //and the correct list displayed withou reloading the page
-    //
-    //to send data to parent I find convenient to use arrow function but once data has been reached
-    //by parent I will not use arrows to update the state so the relative function removeProduct is bound
-    //in the class constructor
-  
   render() {
-      console.log('SingleProd this:', this);
-      const testValue = 'testValue';
+    console.log('SingleProd this:', this);
+    const testValue = 'testValue';
     return (
       <div>
         <hr/>
@@ -131,9 +134,9 @@ class SingleProd extends Component {
         
         {/* REMOVE BUTTON*/} 
         <button
-         onClick={() => {
-             this.onRemove(); //actually removes element from DB
-             this.sendProductIdToParent(); //send removed item id to parent in order to update its state
+         onClick={ () => {    //syntax to trigger multiple function on a single event 
+             this.onRemove(); //onRemove actually "physically" removes element from DB
+             this.sendProductIdToParent(); //sendProductIdToParent sends removed item id to parent in order to update its state
          }}>
           Remove
         </button>
@@ -145,9 +148,3 @@ class SingleProd extends Component {
 export default SingleProd;
 
 
-<button onClick={() => {
-        this.helloThere();
-        this.messageInConsole();
-      }}>
-        Click me!
-      </button>
