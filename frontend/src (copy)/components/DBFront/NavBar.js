@@ -20,7 +20,7 @@ class Navbar extends Component {
     return (
       <div>
         <div>
-          <h6> rendering {this.state.compName} </h6>
+          <h6> rendered {this.state.compName} </h6>
         </div>
 
         <nav>
@@ -28,12 +28,16 @@ class Navbar extends Component {
           <div>
             <ul>
 
+              {/* <li> */}
+              {/*   <Link to='/showall'> /showall - Show All Products </Link> */}
+              {/* </li> */}
+
               <li>
-                <Link to='/getall/'> /getall - Get All Products </Link>
+                <Link to='/getall'> /getall - Get All Products </Link>
               </li>
 
               <li>
-                <Link to='/create/'> /create - Add Product </Link>
+                <Link to='/create'> /create - Add Product </Link>
               </li>
 
               <li>
@@ -41,7 +45,7 @@ class Navbar extends Component {
               </li>
 
               <li>
-              <Link to='/remove/12345id'> /remove - Remove Product </Link>
+              <Link to='/remove/12345'> /remove - Remove Product </Link>
               </li>
 
               {/* <li> */}

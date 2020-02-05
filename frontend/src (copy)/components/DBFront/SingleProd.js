@@ -1,8 +1,7 @@
 console.log('...opening')
 
 import React, {  Component } from 'react';
-import Popup from 'reactjs-popup';
-import Link from 'react-router-dom';
+import Popup from "reactjs-popup";
 
 class SingleProd extends Component {
 
@@ -55,7 +54,7 @@ class SingleProd extends Component {
       <div>
         <hr/>
         <hr/>
-        <h6> rendering {this.state.compName} </h6>
+        <h6> rendered {this.state.compName} </h6>
         <h6> -------- </h6>
         {/* PRODUCT INFO */} 
           <h6>id: {this.props.product._id}</h6>
@@ -76,9 +75,8 @@ class SingleProd extends Component {
         >
           Remove
         </button>
-
+        
         {/* EDIT BUTTON */}
-     
         <button
           onClick={ (e) => { //e stays per DOM event (click press key hoover etc)
               e.preventDefault();
@@ -91,7 +89,6 @@ class SingleProd extends Component {
         >
           Edit
         </button>
-     
       </div>
     );
   };

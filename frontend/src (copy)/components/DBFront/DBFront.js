@@ -51,7 +51,7 @@ class DBFront extends React.Component {
     return (
       <div>
         <div>
-          <h6> --- rendering {this.state.compName} </h6>
+          <h6> --- rendered {this.state.compName} </h6>
 
         </div>
         <Router>
@@ -60,7 +60,7 @@ class DBFront extends React.Component {
           {/* passing down props via React router ->  https://learnwithparam.com/blog/how-to-pass-props-in-react-router/ */}
           <Route path='/create/' render={(props)=> <AddProd {...props} actiontype={'addprod'} buttonlabel={'Add Product'}/>}/>
           
-          <Route path='/getall/' component={GetAllProds} /> {/* hitting the route calls the relative component */}
+          <Route path='/getall' component={GetAllProds} /> {/* hitting the route calls the relative component */}
 
           <Route path='/remove/' component={DelProd} />
 

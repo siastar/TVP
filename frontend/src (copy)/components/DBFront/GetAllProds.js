@@ -5,7 +5,7 @@ import axios from 'axios';
 import ShowProdsList from './ShowProdsList.js'
 // import Popup from "reactjs-popup";
 // import AddProd from './AddProd.js'
-import ProdPopUpForm from './ProdPopUpForm.js';
+// import ProdPopUpForm from './ProdPopUpForm.js';
 
 //server side addresses TODO avoid hard coding
 const getDataRoute = 'http://localhost:3000/products/getdata/';
@@ -23,8 +23,7 @@ class GetAllProds extends Component {
       compName: 'GetAllProds.js',
       products: []
     };
-
-    //binding   
+      
     this.deleteProd = this.deleteProd.bind(this); //bound because it is called within updateProdslist
     this.handleCRUDType = this.handleCRUDType.bind(this);
   }
@@ -93,13 +92,9 @@ class GetAllProds extends Component {
     const prodToUpdate = (updateDataRoute + _id);
     //1) use _id to locate and create a copy of the product to edit from this.state.products
         let prodToMod = this.state.products.find(product => product._id == _id);
-        console.log('prodToMod: ', prodToMod);
+        console.log('prodToMod: ',prodToMod);
     //2) open popup form which fields contain the prodToMod data    
-        return(
-            <div>
-            <ProdPopUpForm></ProdPopUpForm>
-            </div>
-        )
+    
     };
 
     //let productToextract = productsArray.find(item => item.id == provided_id);
@@ -136,20 +131,20 @@ class GetAllProds extends Component {
     return (
       <div>
         <div>
-            <h6> rendering {this.state.compName} </h6>
-        </div>
-
-        <div>
-          <button> Add Product </button>
-          <button> Search Product </button>
+            <h6> rendered {this.state.compName} </h6>
         </div>
         
         <div>
           <hr/>
           <ShowProdsList
             products={this.state.products}
+            updateProdsList={this.updateProdsList}
             handleCRUDType={this.handleCRUDType}
+            deleteProd={this.deleteProd}
           />
+          
+            {/* pass the products list and the method to remove products,  */}
+            {/* as props to its child  ShowProdsList */}
           <hr/>
         </div>
       </div>

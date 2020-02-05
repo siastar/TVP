@@ -39,7 +39,7 @@ class ShowProdsList extends Component {
       
       return (
         <div>
-           <h6> rendering {this.state.compName} </h6>
+           <h6> rendered {this.state.compName} </h6>
           <hr/>
           <div>
             {showList}
