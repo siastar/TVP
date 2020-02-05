@@ -1,11 +1,14 @@
 console.log('...opening');
 
 import React, {  Component } from 'react';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+
 import axios from 'axios';
 import ShowProdsList from './ShowProdsList.js'
 // import Popup from "reactjs-popup";
 // import AddProd from './AddProd.js'
 import ProdPopUpForm from './ProdPopUpForm.js';
+import AddProd from './AddProd.js'
 
 //server side addresses TODO avoid hard coding
 const getDataRoute = 'http://localhost:3000/products/getdata/';
@@ -56,6 +59,18 @@ class GetAllProds extends Component {
       });
   };
 
+    addProd(newProduct){
+        console.log('...adding new product--------->', newProduct);
+        axios.post(postDataRoute, newProduct)
+                  .then(res => {
+            console.log('res.data', res.data)
+          })
+          .catch(err => {
+            console.log('error, cannot post data: ', err)
+          });
+        console.log('process ended ')
+    };
+    
     deleteProd(_id) {//called within handleCrudType receives the on removing product id
     console.log('...deleting product with id: ', _id);
     const prodToDelete = (deleteDataRoute + _id);
@@ -95,11 +110,6 @@ class GetAllProds extends Component {
         let prodToMod = this.state.products.find(product => product._id == _id);
         console.log('prodToMod: ', prodToMod);
     //2) open popup form which fields contain the prodToMod data    
-        return(
-            <div>
-            <ProdPopUpForm></ProdPopUpForm>
-            </div>
-        )
     };
 
     //let productToextract = productsArray.find(item => item.id == provided_id);
@@ -109,7 +119,7 @@ class GetAllProds extends Component {
     
     //TODO async/await
     handleCRUDType(crudArgs) {                   //receives object data defined by triggerCRUDAction in SingleProd.js
-                                                 //the object looks like:                                                    
+        console.log('.....', crudArgs);                   //the object looks like:                                                    
     switch (crudArgs.crudAction) {               // crudArgs = {_id: "5e39f88e23a5b1412830572c",                                                  
                                                  //             crudAction:"CRUD_delete"}                                          
       case 'CRUD_delete':
@@ -120,7 +130,14 @@ class GetAllProds extends Component {
       case 'CRUD_update':
         console.log('updating...',  crudArgs);
         this.editProd(crudArgs._id);
-        break;                                   //the child SingleProd.js
+        break;                                  
+
+      case 'CRUD_create':                        //receives object data defined by onFormSubmit in AddProd.js
+        console.log('creating...',  crudArgs);   //the object looks like:
+        this.addProd(crudArgs.newProduct);       //crudArgs = {newProduct: {the, new, product,...}
+                                                 //            crudAction:"CRUD_create" }
+        break;                                  
+
         
       default:
         break;
@@ -138,10 +155,11 @@ class GetAllProds extends Component {
         <div>
             <h6> rendering {this.state.compName} </h6>
         </div>
-
+        
         <div>
-          <button> Add Product </button>
-          <button> Search Product </button>
+          <AddProd
+            handleCRUDType={this.handleCRUDType}
+          />
         </div>
         
         <div>

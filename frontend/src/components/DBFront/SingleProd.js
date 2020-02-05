@@ -28,21 +28,21 @@ class SingleProd extends Component {
     console.log(this.state);
   };
 
-    // when button is pressed triggerCRUDAction calls handleCRUDtype in the
-    // parent GetAllProds.js by passing it an object (actionArgs) which containes
-    // 
-    // product _id value grabbed from the state
-    // clicked button value (which in the specific defines what kind of CRUD operation we need)
-    // retrieved via actionArgs.target.value
-    
-    triggerCRUDAction(event) {                //activated via button click, receives the                                              
-      this.props.handleCRUDType(              //"event object itself" as argument as argument, 
-          {                                   //then calls parent's function passing it a new object  
-              _id: this.props.product._id,    //argument built with 
-              crudAction: event.target.value  //1) the product _id, grabbed from the
-          }                                   //   component's state,  
-      )                                       //2) the button value grabbed
-  };                                          //in the event object properties 
+  // when button is pressed triggerCRUDAction calls handleCRUDtype in the
+  // parent GetAllProds.js by passing it an object (actionArgs) which containes
+  // 
+  // product _id value grabbed from the state
+  // clicked button value (which in the specific defines what kind of CRUD operation we need)
+  // retrieved via actionArgs.target.value
+
+  triggerCRUDAction(event) { //activated via button click, receives the                                              
+    this.props.handleCRUDType( //"event object itself" as argument as argument, 
+      { //then calls parent's function passing it a new object  
+        _id: this.props.product._id, //argument built with 
+        crudAction: event.target.value //1) the product _id, grabbed from the
+      } //   component's state,  
+    ) //2) the button value grabbed
+  }; //in the event object properties 
 
   componentWillUnmount() {
     console.log(this.state.compName, ' unmounted');
@@ -91,7 +91,10 @@ class SingleProd extends Component {
         >
           Edit
         </button>
-     
+
+        {/* <Link> */}
+        {/* </Link> */}
+        
       </div>
     );
   };

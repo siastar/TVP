@@ -97,10 +97,11 @@ class AddProd extends Component {
     });
   };
 
-  onFormSubmit(e) {
-    e.preventDefault();
-    console.log('event:', e);
-    const product = {
+  onFormSubmit(event) {
+    event.preventDefault();
+    console.log('event.target: ', event.target);
+      
+      const newProduct = {
       artist: this.state.artist,
       title: this.state.title,
       year: this.state.year,
@@ -110,33 +111,49 @@ class AddProd extends Component {
     };
     //notice that this is not going to modify the component state itself but only
     //creates a copy of the object product to POST or PUT to DB
-    console.log('product after submit:', product);
-
-    console.log('adding product...')
-       
-        axios.post(postRoute, product)
-          .then(res => {
-            console.log('res.data', res.data)
-          })
-          .catch(err => {
-            console.log('error, cannot post data: ', err)
-          });
+      let crudAction = 'CRUD_create';
+      let crudArgs = {
+          newProduct,
+          crudAction
+      }
+      
+      console.log('ready to delivery object: ', crudArgs);
+     
+      this.props.handleCRUDType(crudArgs);
+      //(
+          // {
+          //     newProduct: newProduct,
+          //     crudAction: CRUDType
+          // }
+      //);
+        // axios.post(postRoute, newProduct)
+        //   .then(res => {
+        //     console.log('res.data', res.data)
+        //   })
+        //   .catch(err => {
+        //     console.log('error, cannot post data: ', err)
+        //   });
   };
 
   render() {
     console.log('this...', this);
     return (
-      <div>
+        <div>
+          <p>
+            rendering AddProd.js
+          </p>
+
         <ProdPopUpForm
           product=''
-            buttonlabel = {this.props.buttonlabel}//prop routed down via DBFront 'Add Product' || 'Edit Product'
-            onChangeArtist = {this.onChangeArtist}
-            onChangeTitle = {this.onChangeTitle}
-            onChangeYear = {this.onChangeYear}
-            onChangePrice = {this.onChangePrice}
-            onChangeFrontCover = {this.onChangeFrontCover}
-            onChangeBackCover = {this.onChangeBackCover}
-            onFormSubmit = {this.onFormSubmit}
+          value='CRUD_create'
+          buttonlabel = 'Add Product'//prop routed down via DBFront 'Add Product' || 'Edit Product'
+          onChangeArtist = {this.onChangeArtist}
+          onChangeTitle = {this.onChangeTitle}
+          onChangeYear = {this.onChangeYear}
+          onChangePrice = {this.onChangePrice}
+          onChangeFrontCover = {this.onChangeFrontCover}
+          onChangeBackCover = {this.onChangeBackCover}
+          onFormSubmit = {this.onFormSubmit}
         >
         </ProdPopUpForm>
 
