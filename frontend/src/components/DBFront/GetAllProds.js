@@ -1,54 +1,13 @@
-//process description
-
-// GetAllProds.js retrieves data from DB and use them to set a products variable
-// in its own state.
-
-// this.setState({ products: fetchedData });
-
-// products in state will be "single source of truth" for all the children
-// this is necessary (at least it seems ?) because the variation on DB will be not
-// shown on page until it will be reloaded, so to visaualize them immediately we
-// need to modify the state and the DB at the same time.
-
-// ShowProdsList.js receives 'products' array via props and maps it, returning a list
-// of single elements (SingleProd.js) with the products data.
-// Remember that data we display in this moment are NOT the DB but a copy stored in the
-// parent state (GetAllProds.js).
-
-// SingleProd.js contains the single product data and 2 options: Edit and Remove
-//
-// onRemove (CRUD Delete)
-// there are 2 things to do:
-// 1) Actually delete the product from the DB (e.g. via axios.delete)
-// 2) Update the GetAllProduct.js state so that the change is reflected in DOM without refresh
-// in order to update GetAllProds state, removeProduct() method is passed down via props to 
-// SingleProd.js and it's triggered when a product is removed.
-// note that:
-// GetAllProds passes down removeProduct method to ShowProdsList by
-//
-// <ShowProdsList
-//            products={this.state.products}
-//            removeproduct={this.removeProduct}/>
-//
-// then ShowProdsList passes it down again to SingleProd by
-//
-// <SingleProd
-//    key={product._id}
-//   product={product}
-//   removeproduct={this.props.removeproduct}
-// 
-
 console.log('...opening');
 
-import React, {
-  Component
-} from 'react';
+import React, {  Component } from 'react';
 import axios from 'axios';
 import ShowProdsList from './ShowProdsList.js'
 
-const getDataRoute = 'http://localhost:3000/products/getdata/'; //server side address TODO avoid hard coding
-const deleteDataRoute = 'http://localhost:3000/products/deletedata/'; //server side address
-const updateDataRoute = 'http://localhost:3000/products/updatedata/'
+//server side addresses TODO avoid hard coding
+const getDataRoute = 'http://localhost:3000/products/getdata/';
+const deleteDataRoute = 'http://localhost:3000/products/deletedata/';
+const updateDataRoute = 'http://localhost:3000/products/updatedata/';
 const postDataRoute = 'http://localhost:3000/products/createdata/';
 
 class GetAllProds extends Component {
@@ -56,15 +15,15 @@ class GetAllProds extends Component {
   constructor(props) {
     super(props)
 
-    this.updateProdsList = this.updateProdsList.bind(this); //bound because it changes this.state
-    this.deleteProd = this.deleteProd.bind(this); //bound because it is called within updateProdslist
-    this.handleCRUDType = this.handleCRUDType.bind(this);
-
     this.state = {
       testProperty: 'test prop 0',
       compName: 'GetAllProds.js',
       products: []
     };
+      
+    //this.updateProdsList = this.updateProdsList.bind(this); //bound because it changes this.state
+    this.deleteProd = this.deleteProd.bind(this); //bound because it is called within updateProdslist
+    this.handleCRUDType = this.handleCRUDType.bind(this);
   }
 
   componentDidMount() {
@@ -94,7 +53,7 @@ class GetAllProds extends Component {
       });
   };
 
-  deleteProd(_id) {
+  deleteProd(_id) { //called by 
     console.log('...removing item ', _id);
     const prodToDelete = (deleteDataRoute + _id);
     //returns the link of item to delete as expected by Express running server
@@ -126,22 +85,23 @@ class GetAllProds extends Component {
   };
 
   //this function manipulates the state so it MUST be bound in the constructor
-  updateProdsList(productToRemoveId) {
-    // this.setState({ products: productToRemove
-    // })
-    console.log('parent received _id: ', productToRemoveId);
-    console.log('this ', this);
-    //
-  };
-
-  handleCRUDType(crudArgs) {
-
-    switch (crudArgs.crudAction) {
-
+  // updateProdsList(productToRemoveId) {
+  //   // this.setState({ products: productToRemove
+  //   // })
+  //   console.log('parent received _id: ', productToRemoveId);
+  //   console.log('this ', this);
+  //   //
+    // };
+    
+    //TODO async/await
+    handleCRUDType(crudArgs) {                   //receives object data defined by triggerCRUDAction in SingleProd.js
+                                                 //the object looks like:                                                    
+    switch (crudArgs.crudAction) {               // crudArgs = {_id: "5e39f88e23a5b1412830572c",                                                  
+                                                 //             crudAction:"CRUD_delete"}                                          
       case 'CRUD_delete':
         console.log('deleting...',  crudArgs)
-        this.deleteProd(crudArgs._id)
-        break;
+        this.deleteProd(crudArgs._id)            //calls deleteProd by passing it the product to delete id (which comes from)
+        break;                                   //the child SingleProd.js
 
       default:
         break;
