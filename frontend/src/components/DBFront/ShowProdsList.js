@@ -11,7 +11,7 @@ class ShowProdsList extends Component {
     super(props);
     this.state = {
         compName: 'ShowProdsList.js',
-        products: []
+        //products: []
     };
   };
 
@@ -23,17 +23,15 @@ class ShowProdsList extends Component {
   render() {
       const DbProducts = this.props.products;
       console.log('DbProducts' , DbProducts);
-      console.log(this);
+      console.log('this...' , this);
       //NOTE this is not the DB but the state of the parent component GetAllProds.js
 
       const showList = DbProducts.map( (product) => 
           <SingleProd
-             key={product._id}
-             product={product}
-             deleteProd={this.props.deleteProd}
-
-            //updateProdsList={this.props.updateProdsList}
+            key={product._id}
+            product={product}
             handleCRUDType={this.props.handleCRUDType}
+            
           />
       );
       

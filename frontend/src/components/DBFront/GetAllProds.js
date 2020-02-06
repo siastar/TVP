@@ -102,20 +102,18 @@ class GetAllProds extends Component {
       });
   };
 
-    editProd(_id) {
-        console.log('this within editprod:' , this)
-    console.log('...editing product with id: ', _id);
-    const prodToUpdate = (updateDataRoute + _id);
+    editProd(_id , editedProduct) {
+        console.log('editProd id: ' , (_id));
+        console.log('editProd product: ' , (editedProduct));
+        const axiosRoute = (updateDataRoute + _id);
+
     //1) use _id to locate and create a copy of the product to edit from this.state.products
-        let prodToMod = this.state.products.find(product => product._id == _id);
-        console.log('prodToMod: ', prodToMod);
+    //    let prodToMod = this.state.products.find(product => product._id == _id);
+    //    console.log('prodToMod: ', prodToMod);
     //2) open popup form which fields contain the prodToMod data    
     };
 
     //let productToextract = productsArray.find(item => item.id == provided_id);
-
-
-
     
     //TODO async/await
     handleCRUDType(crudArgs) {                   //receives object data defined by triggerCRUDAction in SingleProd.js
@@ -129,7 +127,7 @@ class GetAllProds extends Component {
 
       case 'CRUD_update':
         console.log('updating...',  crudArgs);
-        this.editProd(crudArgs._id);
+        this.editProd(crudArgs._id , crudArgs.editedProduct);
         break;                                  
 
       case 'CRUD_create':                        //receives object data defined by onFormSubmit in AddProd.js
@@ -137,7 +135,6 @@ class GetAllProds extends Component {
         this.addProd(crudArgs.newProduct);       //crudArgs = {newProduct: {the, new, product,...}
                                                  //            crudAction:"CRUD_create" }
         break;                                  
-
         
       default:
         break;

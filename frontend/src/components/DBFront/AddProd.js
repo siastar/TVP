@@ -18,24 +18,12 @@ class AddProd extends Component {
 
   constructor(props) {
     super(props);
-
-    //binding
-    this.onChangeArtist = this.onChangeArtist.bind(this);
-    this.onChangeTitle = this.onChangeTitle.bind(this);
-    this.onChangeYear = this.onChangeYear.bind(this);
-    this.onChangePrice = this.onChangePrice.bind(this);
-    this.onChangeFrontCover = this.onChangeFrontCover.bind(this);
-    this.onChangeBackCover = this.onChangeBackCover.bind(this);
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-
+   
     //state  
     this.state = {
       compName: 'AddProd.js',
       testmessage: 'original test message',
-      //actiontype: '',
       buttonlabel: '',
-      //actiontype comes as a prop from DBFront and once defined it switches
-      //to the addProduct or editPorduct route so this component can be used in both cases
       //
       ////////////// product properties, TODO: wrap them in a separate object
       artist: '',
@@ -46,19 +34,24 @@ class AddProd extends Component {
       backcover: ''
       //////////////
     };
-  };
+       //binding
+    this.onChangeArtist = this.onChangeArtist.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeYear = this.onChangeYear.bind(this);
+    this.onChangePrice = this.onChangePrice.bind(this);
+    this.onChangeFrontCover = this.onChangeFrontCover.bind(this);
+    this.onChangeBackCover = this.onChangeBackCover.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+
+  }
 
   componentDidMount() {
     console.log(this.state.compName, ' mounted');
     this.setState({
-      products: [], //products is the array of data coming from mongoDB
+      //products: [], //products is the array of data coming from mongoDB
       product: {}, 
       //actiontype: this.props.actiontype
     });
-  };
-
-  componentWillUnmount() {
-    console.log(this.state.compName, ' unmounted');
   };
 
   onChangeArtist(e) {
@@ -120,21 +113,13 @@ class AddProd extends Component {
       console.log('ready to delivery object: ', crudArgs);
      
       this.props.handleCRUDType(crudArgs);
-      //(
-          // {
-          //     newProduct: newProduct,
-          //     crudAction: CRUDType
-          // }
-      //);
-        // axios.post(postRoute, newProduct)
-        //   .then(res => {
-        //     console.log('res.data', res.data)
-        //   })
-        //   .catch(err => {
-        //     console.log('error, cannot post data: ', err)
-        //   });
+   
   };
 
+  componentWillUnmount() {
+    console.log(this.state.compName, ' unmounted');
+  };
+    
   render() {
     console.log('this...', this);
     return (
@@ -145,7 +130,6 @@ class AddProd extends Component {
 
         <ProdPopUpForm
           product=''
-          value='CRUD_create'
           buttonlabel = 'Add Product'//prop routed down via DBFront 'Add Product' || 'Edit Product'
           onChangeArtist = {this.onChangeArtist}
           onChangeTitle = {this.onChangeTitle}

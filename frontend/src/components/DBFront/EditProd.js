@@ -4,11 +4,11 @@ console.log('...opening');
 // https://dev.to/spukas/moving-arguments-from-child-to-parent-component-in-react-25lp
 // https://github.com/siastar/proptesting
 
-import React, { Component } from 'react';
+import React, {  Component} from 'react';
+
 import axios from 'axios';
 import ProdPopUpForm from './ProdPopUpForm.js';
-
-//const postRoute = 'http://localhost:3000/products/createdata/';
+const postRoute = 'http://localhost:3000/products/createdata/';
 const putRoute = 'http://localhost:3000/products/updatedata/';
 //TODO hardcoded links are no good !!!
 const currentRoute = '';
@@ -26,14 +26,15 @@ class EditProd extends Component {
     this.onChangeFrontCover = this.onChangeFrontCover.bind(this);
     this.onChangeBackCover = this.onChangeBackCover.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
+    // this.componentDidMount = this.componentDidMount.bind(this);
 
     //state  
     this.state = {
       compName: 'EditProd.js',
-      testmessage: 'test message',
-      buttonlabel: '',
+      testmessage: '',
       //
       ////////////// product properties, TODO: wrap them in a separate object
+      prod_id:'',
       artist: '',
       title: '',
       year: '',
@@ -41,16 +42,22 @@ class EditProd extends Component {
       frontcover: '',
       backcover: ''
       //////////////
+    
     };
   };
 
-  componentDidMount() {
-    console.log(this.state.compName, ' mounted');
-    this.setState({
-      products: [], //products is the array of data coming from mongoDB
-      product: {}, 
-      //actiontype: this.props.actiontype
-    });
+    componentDidMount() {
+              
+      this.setState({
+          artist: this.props.product.artist,
+          title: this.props.product.title,
+          year: this.props.product.year,
+          price: this.props.product.price,
+          frontcover: this.props.product.frontcover,
+          backcover: this.props.product.backcover,
+      });
+        
+          
   };
 
   componentWillUnmount() {
@@ -63,6 +70,14 @@ class EditProd extends Component {
     });
   };
 
+  // onChangeArtist(e) {
+  //    this.setState(prevState => ({
+  // product: {
+  //   ...prevState.product,
+  //   artist: e.target.value
+  // }}));   
+  // };
+    
   onChangeTitle(e) {
     this.setState({
       title: e.target.value
@@ -93,10 +108,11 @@ class EditProd extends Component {
     });
   };
 
-  onFormSubmit(e) {
-    e.preventDefault();
-    console.log('event:', e);
-    const product = {
+  onFormSubmit(event) {
+    event.preventDefault();
+    console.log('event.target: ', event.target);
+      
+      const editedProduct = {
       artist: this.state.artist,
       title: this.state.title,
       year: this.state.year,
@@ -104,29 +120,43 @@ class EditProd extends Component {
       frontcover: this.state.frontcover,
       backcover: this.state.backcover
     };
-    //notice that this is not going to modify the component state itself but only
-    //creates a copy of the object product to POST or PUT to DB
-    console.log('product after submit:', product);
+      let crudAction = 'CRUD_update';
+      let target_id = this.props.product._id;
+
+      let crudArgs = {
+          editedProduct: editedProduct,
+          crudAction: crudAction,
+          _id: target_id
+      }
+      
+      console.log('ready to delivery object:', crudArgs);
+
+      this.props.handleCRUDType(crudArgs);
+     
+      //this.props.handleCRUDType(crudArgs);
 
   };
 
   render() {
     console.log('this...', this);
     return (
-      <div>
+        <div>
+        <div>
         <ProdPopUpForm
-            product = {this.props.product || 'test'}
-            buttonlabel = {this.props.buttonlabel}
-            onChangeArtist = {this.onChangeArtist}
-            onChangeTitle = {this.onChangeTitle}
-            onChangeYear = {this.onChangeYear}
-            onChangePrice = {this.onChangePrice}
-            onChangeFrontCover = {this.onChangeFrontCover}
-            onChangeBackCover = {this.onChangeBackCover}
-            onFormSubmit = {this.onFormSubmit}
+          product={this.props.product}
+          buttonlabel = 'Edit Product'
+          onChangeArtist = {this.onChangeArtist}
+          onChangeTitle = {this.onChangeTitle}
+          onChangeYear = {this.onChangeYear}
+          onChangePrice = {this.onChangePrice}
+          onChangeFrontCover = {this.onChangeFrontCover}
+          onChangeBackCover = {this.onChangeBackCover}
+          onFormSubmit = {this.onFormSubmit}
         >
         </ProdPopUpForm>
-      </div>
+          </div>
+
+        </div>
     );
   };
 };

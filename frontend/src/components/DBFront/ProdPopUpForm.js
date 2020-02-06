@@ -10,12 +10,27 @@ class ProdPopUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      compName: 'prodPopUpForm.js'
-    }
-  };
+        compName: 'prodPopUpForm.js',
+        fieldIsRequired: null
+    };
+  }
 
   componentDidMount() {
-    console.log(this.state.compName, ' mounted...')
+      console.log(this.state.compName, ' mounted...');
+
+      switch(this.props.buttonlabel) {
+      case 'Edit Product':
+          this.setState({ fieldIsRequired: false});
+          break;
+      case 'Add Product':
+          this.setState({ fieldIsRequired: true});
+          break;
+      default:
+          break;
+      }
+      
+     
+      
   };
 
   componentWillUnmount() {
@@ -43,7 +58,7 @@ class ProdPopUpForm extends Component {
                   <div>
                     <label>artist: </label>
                     <input type="text"
-                           required
+                           required = {this.state.fieldIsRequired}
                            value={this.props.artist}
                            placeholder={this.props.product.artist || 'artist'}
                            onChange={this.props.onChangeArtist}
@@ -54,7 +69,7 @@ class ProdPopUpForm extends Component {
                   <div>
                     <label>title: </label>
                     <input type="text"
-                           required
+                           required = {this.state.fieldIsRequired}
                            value={this.props.title}
                            placeholder={this.props.product.title || 'title'}
                            onChange={this.props.onChangeTitle}>
@@ -64,7 +79,7 @@ class ProdPopUpForm extends Component {
                   <div>
                     <label>year: </label>
                     <input type="text"
-                           required
+                           required = {this.state.fieldIsRequired}
                            value={this.props.year}
                            placeholder={this.props.product.year || 'year'}
                            onChange={this.props.onChangeYear}>
@@ -74,7 +89,8 @@ class ProdPopUpForm extends Component {
                   <div>
                     <label>price: </label>
                     <input type="text"
-                           required value={this.props.price}
+                           required = {this.state.fieldIsRequired}
+                           value={this.props.price}
                            placeholder={this.props.product.price || 'price'}
                            onChange={this.props.onChangePrice}>
                     </input>
@@ -83,7 +99,7 @@ class ProdPopUpForm extends Component {
                   <div>
                     <label>frontcover: </label>
                     <input type="text"
-                           required
+                           required = {this.state.fieldIsRequired}
                            value={this.props.frontcover}
                            placeholder={this.props.product.frontcover || 'front cover'}
                            onChange={this.props.onChangeFrontCover}>
@@ -93,7 +109,7 @@ class ProdPopUpForm extends Component {
                   <div>
                     <label>backcover: </label>
                     <input type="text"
-                           required
+                           required = {this.state.fieldIsRequired}
                            value={this.props.backcover}
                            placeholder={this.props.product.backcover || 'back cover'}
                            onChange={this.props.onChangeBackCover}>
