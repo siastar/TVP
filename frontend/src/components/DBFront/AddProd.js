@@ -6,7 +6,6 @@ console.log('...opening');
 // https://github.com/siastar/proptesting
 
 import React, {  Component} from 'react';
-
 import axios from 'axios';
 import ProdPopUpForm from './ProdPopUpForm.js';
 const postRoute = 'http://localhost:3000/products/createdata/';
@@ -18,7 +17,7 @@ class AddProd extends Component {
 
   constructor(props) {
     super(props);
-   
+
     //state  
     this.state = {
       compName: 'AddProd.js',
@@ -34,7 +33,7 @@ class AddProd extends Component {
       backcover: ''
       //////////////
     };
-       //binding
+    //binding
     this.onChangeArtist = this.onChangeArtist.bind(this);
     this.onChangeTitle = this.onChangeTitle.bind(this);
     this.onChangeYear = this.onChangeYear.bind(this);
@@ -49,7 +48,7 @@ class AddProd extends Component {
     console.log(this.state.compName, ' mounted');
     this.setState({
       //products: [], //products is the array of data coming from mongoDB
-      product: {}, 
+      product: {},
       //actiontype: this.props.actiontype
     });
   };
@@ -93,8 +92,8 @@ class AddProd extends Component {
   onFormSubmit(event) {
     event.preventDefault();
     console.log('event.target: ', event.target);
-      
-      const newProduct = {
+
+    const newProduct = {
       artist: this.state.artist,
       title: this.state.title,
       year: this.state.year,
@@ -102,28 +101,29 @@ class AddProd extends Component {
       frontcover: this.state.frontcover,
       backcover: this.state.backcover
     };
+
     //notice that this is not going to modify the component state itself but only
     //creates a copy of the object product to POST or PUT to DB
-      let crudAction = 'CRUD_create';
-      let crudArgs = {
-          newProduct,
-          crudAction
-      }
-      
-      console.log('ready to delivery object: ', crudArgs);
-     
-      this.props.handleCRUDType(crudArgs);
-   
+
+    let crudAction = 'CRUD_create';
+    let crudArgs = {
+      newProduct: newProduct,
+      crudAction: crudAction
+    };
+
+    console.log('...sending object to handleCRUDType: ', crudArgs);
+    this.props.handleCRUDType(crudArgs);
+
   };
 
   componentWillUnmount() {
     console.log(this.state.compName, ' unmounted');
   };
-    
+
   render() {
     console.log('this...', this);
     return (
-        <div>
+      <div>
           <p>
             rendering AddProd.js
           </p>
