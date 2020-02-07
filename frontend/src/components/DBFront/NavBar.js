@@ -19,39 +19,39 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <div>
+        <nav background-color="grey">
+        
           <h6> rendering {this.state.compName} </h6>
-        </div>
+        
 
-        <nav>
-          <Link to='/'> reset </Link>
-          <div>
-            <ul>
+          {/* <Link to='/'> reset </Link> */}
+          {/* <div> */}
+          {/*   <ul> */}
 
-              <li>
-                <Link to='/getall/'> /getall - Get All Products </Link>
-              </li>
+          {/*     <li> */}
+          {/*       <Link to='/getall/'> /getall - Get All Products </Link> */}
+          {/*     </li> */}
 
-              <li>
-                <Link to='/create/'> /create - Add Product </Link>
-              </li>
+          {/*     <li> */}
+          {/*       <Link to='/create/'> /create - Add Product </Link> */}
+          {/*     </li> */}
 
-              <li>
-                <Link to='/edit/'> /edit - Edit Product </Link>
-              </li>
+          {/*     <li> */}
+          {/*       <Link to='/edit/'> /edit - Edit Product </Link> */}
+          {/*     </li> */}
 
-              <li>
-              <Link to='/remove/12345id'> /remove - Remove Product </Link>
-              </li>
+          {/*     <li> */}
+          {/*     <Link to='/remove/12345id'> /remove - Remove Product </Link> */}
+          {/*     </li> */}
 
-              {/* <li> */}
-              {/*   <Link to='/testingstuff'> /testingstuff - Test Stuff </Link> */}
-              {/* </li> */}
+          {/*     {/\* <li> *\/} */}
+          {/*     {/\*   <Link to='/testingstuff'> /testingstuff - Test Stuff </Link> *\/} */}
+          {/*     {/\* </li> *\/} */}
 
 
-            </ul>
-          </div>
-        </nav>
+          {/*   </ul> */}
+          {/* </div> */}
+      </nav>
       </div>
     );
   }
