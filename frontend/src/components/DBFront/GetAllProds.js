@@ -78,15 +78,14 @@ class GetAllProds extends Component {
           //STATE UPDATER
           //clone the products array in the state
           let newProducts = [...this.state.products]; 
-          //this is not necessary but it could geive issues in the future so take care of it
+          //push new product object in clone array (avoid to directly manipulate state)
           newProducts.push(newProduct); 
-          //console.log('[newprods] after push: ' , newProducts);
+          //update the state by replacing full products array
           this.setState({
            products: newProducts 
           })
           
           ///
-
           
       })
       .catch(err => {
@@ -117,7 +116,7 @@ class GetAllProds extends Component {
             if (product._id !== _id) //this will produce a copy of state.products, without the deleted product  
               newproducts.push(product)
           }) //last step is to the replace state.product with the new array (setState) 
-        console.log('-----', newproducts);
+        //console.log(newproducts);
         this.setState({
           products: newproducts
         })
@@ -128,24 +127,45 @@ class GetAllProds extends Component {
       });
   };
 
-  editProd(_id, editedProduct) {
-    console.log('editProd Args... ', (_id, editedProduct));
-    //console.log('editProd product: ' , (editedProduct));
-    const axiosRoute = (updateDataRoute + _id);
+  editProd(crudArgs) {
+      // console.log('axios.put editProd Args... ', (crudArgs));
+      // console.log('axios.put crudArgs._id: ' , (crudArgs._id));
+      // console.log('axios.put crudArgs.crudAction: ' , (crudArgs.crudAction));
+      console.log('axios.put crudArgs.editedProduct: ' , (crudArgs.editedProduct));
+      
+      const axiosRoute = (updateDataRoute + crudArgs._id);
+      console.log('axios.put route' , axiosRoute);
 
-    //1) use _id to locate and create a copy of the product to edit from this.state.products
-    //    let prodToMod = this.state.products.find(product => product._id == _id);
-    //    console.log('prodToMod: ', prodToMod);
-    //2) open popup form which fields contain the prodToMod data    
+      axios.put(axiosRoute, crudArgs.editedProduct)
+          .then( res => {
+              console.log('axios.put response: ' , res);
+
+              //STATE UPDATER
+              //the edited product coming from crudArgs has no _id so first
+              //give it the same _id he had before the editing
+              crudArgs.editedProduct._id = crudArgs._id
+              //console.log(crudArgs.editedProduct);
+              
+              let newProducts =[...this.state.products]; //clone state products array
+              let index = newProducts.findIndex(item => item._id === crudArgs._id) // find in newProducts array the index of the element whose _id is crudArgs._id
+              //console.log('index: ' , index);
+              newProducts.splice(index, 1, crudArgs.editedProduct); // insert edited product with its _id in the newProducts array
+              //console.log('newProducts:' , newProducts);
+              this.setState({products: newProducts})
+          })
+
+      .catch(err => {
+          console.log('axios.put error: : ', err)
+      });
+
   };
 
-  //let productToextract = productsArray.find(item => item.id == provided_id);
 
   //TODO async/await
   handleCRUDType(crudArgs) { //receives object data defined by triggerCRUDAction in SingleProd.js
-    console.log('.....', crudArgs); //the object looks like:                                                    
-    switch (crudArgs.crudAction) { // crudArgs = {_id: "5e39f88e23a5b1412830572c",                                                  
-      //             crudAction:"CRUD_delete"}                                          
+    console.log('handleCRUDType args: ', crudArgs); //the object looks like:                                                    
+    switch (crudArgs.crudAction) { // crudArgs = {_id: "5e39f88e23a5b1412830572c", crudAction:"CRUD_delete"}                                          
+
       case 'CRUD_delete':
         console.log('deleting...', crudArgs);
         this.deleteProd(crudArgs._id); //calls deleteProd by passing it the product to delete id (which comes from)
@@ -153,7 +173,7 @@ class GetAllProds extends Component {
 
       case 'CRUD_update':
         console.log('updating...', crudArgs);
-        this.editProd(crudArgs._id, crudArgs.editedProduct);
+        this.editProd(crudArgs);
         break;
 
       case 'CRUD_create': //receives object data defined by onFormSubmit in AddProd.js
