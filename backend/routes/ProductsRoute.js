@@ -37,8 +37,6 @@ router.get('/getdata', (req, res) => {
   });
 });
 
-
-
 //Create
 
 router.post('/createdata/', (req, res) => {
@@ -91,11 +89,22 @@ router.delete('/deletedata/:id', (req, res) => {
   });
 });
 
+// Place.findOneAndUpdate({_id:req.params.id}, req.body, function (err, place) {
+//   res.send(place);
+// });
+
+// Place.findByIdAndUpdate(req.params.id, req.body, function (err, place) {
+//   res.send(place);
+// });
+
 //Update // to fix, does not update correct record
 router.put('/updatedata/:id', (req, res) => {
+  console.log('params.id: ', req.params.id)
+  console.log('req.body; ', req.body)
 
-  ProductSchema.findOneAndUpdate(
-    req.params.id, // params.id is the element to update id
+  ProductSchema.findOneAndUpdate({
+      _id: req.params.id
+    }, // params.id is the element to update's _id
     req.body, // updated content, findOneAndUpdate is a mongoose method
 
     {

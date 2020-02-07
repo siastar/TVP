@@ -14,8 +14,10 @@ class Database {
   
 _connect() {
   mongoose.connect(localDB, {
-    useUnifiedTopology: true,
-    useNewUrlParser: true
+    //https://mongoosejs.com/docs/deprecations.html
+    useUnifiedTopology: true, //
+    useNewUrlParser: true,    //
+    useFindAndModify: false   //
 })
        .then(() => {
          console.log('Database connection successful')
