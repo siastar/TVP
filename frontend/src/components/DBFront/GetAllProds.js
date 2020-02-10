@@ -4,6 +4,8 @@ import React, {  Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import ShowProdsList from './ShowProdsList.js'
+// import Popup from "reactjs-popup";
+// import AddProd from './AddProd.js'
 import ProdPopUpForm from './ProdPopUpForm.js';
 import AddProd from './AddProd.js'
 
@@ -108,15 +110,15 @@ class GetAllProds extends Component {
         //console.log(this.state.products);
         //now the product has been removed from DB put persists in the component state so is still displayed      
         //to update the state without reloading the page we could.
-        let newProducts = []; //set a new empty array 
+        let newproducts = []; //set a new empty array 
         this.state.products.forEach( //iterate the state products array, and copy any element with id  
           product => { //different from the deleted product id (_id), in the new empty array 
             if (product._id !== _id) //this will produce a copy of state.products, without the deleted product  
-              newProducts.push(product)
+              newproducts.push(product)
           }) //last step is to the replace state.product with the new array (setState) 
-        //console.log(newProducts);
+        //console.log(newproducts);
         this.setState({
-          products: newProducts
+          products: newproducts
         })
       })
 
@@ -201,11 +203,6 @@ class GetAllProds extends Component {
           <AddProd
             handleCRUDType={this.handleCRUDType}
           />
-        </div>
-
-        <div>
-        {/* <SearchProd */}
-        {/*   searchStuff={this.searchStuff}/> */}
         </div>
         
         <div>

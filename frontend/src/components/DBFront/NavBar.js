@@ -19,39 +19,33 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <nav background-color="grey">
-        
+        <div>
           <h6> rendering {this.state.compName} </h6>
-        
+        </div>
 
+        <nav>
+          <p>NAVBAR</p>
           {/* <Link to='/'> reset </Link> */}
           {/* <div> */}
           {/*   <ul> */}
-
           {/*     <li> */}
           {/*       <Link to='/getall/'> /getall - Get All Products </Link> */}
           {/*     </li> */}
-
           {/*     <li> */}
           {/*       <Link to='/create/'> /create - Add Product </Link> */}
           {/*     </li> */}
-
           {/*     <li> */}
           {/*       <Link to='/edit/'> /edit - Edit Product </Link> */}
           {/*     </li> */}
-
           {/*     <li> */}
           {/*     <Link to='/remove/12345id'> /remove - Remove Product </Link> */}
           {/*     </li> */}
-
           {/*     {/\* <li> *\/} */}
           {/*     {/\*   <Link to='/testingstuff'> /testingstuff - Test Stuff </Link> *\/} */}
           {/*     {/\* </li> *\/} */}
-
-
           {/*   </ul> */}
           {/* </div> */}
-      </nav>
+        </nav>
       </div>
     );
   }

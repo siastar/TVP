@@ -7,19 +7,19 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom'; //defin
 //import Popup from "reactjs-popup";
 
 import NavBar from './NavBar.js';
-//import AddProd from './AddProd.js';
-//import EditProd from './EditProd.js';
-//import DelProd from './DelProd.js';
+import AddProd from './AddProd.js';
+import EditProd from './EditProd.js';
+import DelProd from './DelProd.js';
 import GetAllProds from './GetAllProds.js';
 //import ShowAllProds from './ShowAllProds.js';
 //import axios from 'axios';
 
 //import TestStuff_03 from './testingstuff/TestingStuff_03.js' 
 
-//const getDataRoute = 'http://localhost:3000/products/getdata/'; //server side address
-//const postDataRoute = '';
-//const putDataRoute = '';
-//const delDataRoute = '';
+const getDataRoute = 'http://localhost:3000/products/getdata/'; //server side address
+const postDataRoute = '';
+const putDataRoute = '';
+const delDataRoute = '';
 
 class DBFront extends React.Component {
 
@@ -38,7 +38,7 @@ class DBFront extends React.Component {
    };
 
    componentWillUnmount() {
-       console.log(this.state.compName, ' unmounted');
+   console.log(this.state.compName, ' unmounted');
    };
     
   //methods  
@@ -47,16 +47,17 @@ class DBFront extends React.Component {
     };
 
   render() {
-    console.log('DBFront this: ', this);
+    //console.log('DBFront this: ', this);
     return (
       <div>
         <div>
           <h6> --- rendering {this.state.compName} </h6>
-
+          <NavBar />
         </div>
-        <NavBar />
-        <GetAllProds />{/* God's function */}
-
+        <div>
+          <GetAllProds/>
+          
+        </div>
         {/* <Router> */}
 
         {/*   {/\* passing down props via React router ->  https://learnwithparam.com/blog/how-to-pass-props-in-react-router/ *\/} */}
