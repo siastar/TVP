@@ -3,6 +3,7 @@ console.log('opening...');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App.js'
+import './styles/teststyle.scss';
 
 const reactContent = document.getElementById('react-root'); //refers to index.html
 
@@ -15,7 +16,7 @@ reactContent ? ReactDOM.render(<App/> , reactContent) : false
 
 // );
 
-// if (module.hot) {
-//   module.hot.accept();
-// } //hot reload on changes (as defined in webpack.conf.js)
+if (module.hot) {
+  module.hot.accept();
+} //hot reload on changes (as defined in webpack.conf.js)
 

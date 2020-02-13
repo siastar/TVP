@@ -23,9 +23,9 @@ class App extends React.Component {
 
     return (
       <div>
-        {/* <div> */}
-        {/*   <h6> rendered {this.state.compName} </h6> */}
-        {/* </div> */}
+        <div className="teststyle">
+          <h6> testing scss with webpack </h6>
+        </div>
         <DBFront />
       </div>
     );
