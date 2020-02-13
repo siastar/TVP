@@ -1,8 +1,10 @@
-console.log('...opening')
+console.log('opening...');
 
-import React, {  Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import Popup from 'reactjs-popup';
-import Link from 'react-router-dom';
+//import Link from 'react-router-dom';
 import EditProd from './EditProd.js';
 
 class SingleProd extends Component {
@@ -20,9 +22,9 @@ class SingleProd extends Component {
     };
   }
 
-  componentDidMount() {
-    console.log(this.state.compName, ' Did Mount');
-  };
+  // componentDidMount() {
+  //   console.log(this.state.compName, ' Did Mount');
+  // };
 
   // when button is pressed triggerCRUDAction calls handleCRUDtype in the
   // parent GetAllProds.js by passing it an object (actionArgs) which containes
@@ -41,7 +43,7 @@ class SingleProd extends Component {
   }; //in the event object properties 
 
   componentWillUnmount() {
-    console.log(this.state.compName, ' unmounted');
+    console.log('unmounting...');
   };
 
   render() {
@@ -80,8 +82,8 @@ class SingleProd extends Component {
           product={this.props.product}
           //duck = {'donalDuck'}
         />
-        </div>
-      </div>
+        </div> <
+      /div>
     );
   };
 };

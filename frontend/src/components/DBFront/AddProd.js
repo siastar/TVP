@@ -1,17 +1,17 @@
-console.log('...opening');
-
+console.log('opening...');
 
 // about passing data back to parents:
 // https://dev.to/spukas/moving-arguments-from-child-to-parent-component-in-react-25lp
 // https://github.com/siastar/proptesting
 
 import React, {  Component} from 'react';
-import axios from 'axios';
 import ProdPopUpForm from './ProdPopUpForm.js';
-const postRoute = 'http://localhost:3000/products/createdata/';
-const putRoute = 'http://localhost:3000/products/updatedata/';
+
+//import axios from 'axios';
+//const postRoute = 'http://localhost:3000/products/createdata/';
+//const putRoute = 'http://localhost:3000/products/updatedata/';
 //TODO hardcoded links are no good !!!
-const currentRoute = '';
+//const currentRoute = '';
 
 class AddProd extends Component {
 
@@ -45,7 +45,7 @@ class AddProd extends Component {
   }
 
   componentDidMount() {
-    console.log(this.state.compName, ' mounted');
+    //console.log(this.state.compName, ' mounted');
     this.setState({
       //products: [], //products is the array of data coming from mongoDB
       product: {},
@@ -117,7 +117,7 @@ class AddProd extends Component {
   };
 
   componentWillUnmount() {
-    console.log(this.state.compName, ' unmounted');
+    console.log('unmounting...');
   };
 
   render() {

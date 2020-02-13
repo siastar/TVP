@@ -1,68 +1,168 @@
-const webpack = require('webpack');
+console.log('reading webpack config...');
+
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const {
+  CleanWebpackPlugin
+} = require('clean-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
-
-  entry: './src/index.js',
-
+  mode: "development",
+  entry: {
+    app: "./src/index.js"
+    //print: "./src/print.js"
+  },
+  devtool: 'inline-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, './'), // where dev server will look for static files, not compiled
+    publicPath: '/', //relative path to output path where  devserver will look for compiled files,
+    hot: true,
+    port: 9999 //if not specified the default port is 8080
+  },
+  output: {
+    filename: 'js/[name].bundle.js',
+    path: path.resolve(__dirname, 'dist'), // base path where to send compiled assets
+    publicPath: '/' // base path where referenced files will be look for
+  },
+  resolve: {
+    extensions: ['*', '.js', '.jsx'],
+    alias: {
+      '@': path.resolve(__dirname, 'src') // shortcut to reference src folder from anywhere
+    }
+  },
   module: {
-    rules: [{
+    rules: [{ // config for es6 jsx
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader']
+        use: {
+          loader: "babel-loader"
+        }
       },
-
-      {
-        // test: /\.css$/i,
-        // use: ['style-loader', 'css-loader'],
-        test: /\.(scss)$/,
+      { // config for sass compilation
+        test: /\.scss$/,
         use: [{
-            // Adds CSS to the DOM by injecting a `<style>` tag
-            loader: 'style-loader'
+            loader: MiniCssExtractPlugin.loader
           },
+          'css-loader',
           {
-            // Interprets `@import` and `url()` like `import/require()` and will resolve them
-            loader: 'css-loader'
-          },
-          {
-            // Loader for webpack to process CSS with PostCSS
-            loader: 'postcss-loader',
-            options: {
-              plugins: function() {
-                return [
-                  require('autoprefixer')
-                ];
-              }
-            }
-          },
-          {
-            // Loads a SASS/SCSS file and compiles it to CSS
-            loader: 'sass-loader'
+            loader: "sass-loader"
           }
         ]
-
+      },
+      { // config for images
+        test: /\.(png|svg|jpg|jpeg|gif)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'images',
+          }
+        }],
+      },
+      { // config for fonts
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: 'fonts',
+          }
+        }],
+      },
+      {
+        test: /\.(csv|tsv)$/,
+        use: ["csv-loader"]
       }
     ]
   },
-
-  resolve: {
-    extensions: ['*', '.js', 'jsx']
-  },
-
-  output: {
-    path: __dirname + '/dist', //https://alligator.io/nodejs/how-to-use__dirname/
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
-  ],
-
-  devServer: {
-    contentBase: './dist',
-    hot: true, //enables hot reload on file changes (similar to nodemon)
-    compress: true,
-    port: 9999 //if not specified the default port is 8080
-  }
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ["css/*.*", "js/*.*", "fonts/*.*", "images/*.*"]
+    }),
+    new HtmlWebpackPlugin({ // plugin for inserting scripts automatically into html
+      template: "./src/index.html",
+      filename: "index.html",
+      title: "Learning Webpack"
+    }),
+    new MiniCssExtractPlugin({ // plugin for controlling how compiled css will be outputted and named
+      filename: "css/[name].css",
+      chunkFilename: "css/[id].css"
+    })
+  ]
 };
+
+// const HtmlWebPackPlugin = require("html-webpack-plugin");
+// const webpack = require('webpack'); //
+// const path = require('path'); //
+
+// module.exports = {
+
+//   entry: './src/index.js',
+//   //
+//   output: {
+//     filename: 'bundle.js',
+//     path: path.resolve(__dirname, 'dist'),
+//   },
+//   //
+//   module: {
+//     rules: [
+//       //
+//       {
+//         test: /\.(js|jsx)$/,
+//         exclude: /node_modules/,
+//         use: {
+//           loader: "babel-loader"
+//         }
+//       },
+//       //
+//       {
+//         test: /\.html$/,
+//         use: [{
+//           loader: "html-loader"
+//         }]
+//       }
+//     ]
+//   },
+
+//   plugins: [
+//     new HtmlWebPackPlugin({
+//       template: "./src/index.html",
+//       filename: "./index.html"
+//     })
+//   ]
+// };
+
+
+// const webpack = require('webpack');
+// const path = require('path');
+
+// module.exports = {
+//   mode: 'development', // 'production' | 'development' | 'none'
+//   entry: './src/index.js',
+
+//   module: {
+//     rules: [{
+//         test: /\.(js|jsx)$/,
+//         exclude: /node_modules/,
+//         use: ['babel-loader']
+//       },
+
+//       {
+//         test: /\.css$/,
+//         use: [
+//           'style-loader', //style loader injectes css
+//           'css-loader' //css loader translates css
+//           //the order MUST be respected
+//         ]
+//       }
+//     ]
+//   },
+
+//   resolve: {
+//     extensions: ['*', '.js', '.jsx']
+//   },
+
+//   output: {
+//     filename: 'bundle.js',
+//       path: path.resolve(__dirname, 'dist'),
+//   },
+// };

@@ -1,4 +1,4 @@
-console.log('...opening')
+console.log('opening...');
 //ShowProdList receives the array "this.props.products" then maps it returning a <SingleProd/>
 //element for any item in the array.
 
@@ -16,7 +16,7 @@ class ShowProdsList extends Component {
   };
 
     componentDidMount(){
-        console.log(this.state.compName , ' mounted');
+        console.log('unmounting...');
         
     }
     

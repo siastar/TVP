@@ -1,4 +1,4 @@
-console.log('opening --->');
+console.log('opening...');
 
 import React, { Component } from 'react';
 
@@ -16,7 +16,7 @@ class ClassTemplate extends Component {
     }
 
     componentWillUnmount(){
-        console.log(this.state.compName , ' unmounted...')
+        console.log('unmounting...');
     }
     
     render(){

@@ -13,8 +13,8 @@ const ProductSchema = require('../model/ProductSchema.js');
 //Read All
 
 router.get('/getdata', (req, res) => {
-  console.log('req.body :', req.body); //
-  console.log('res.body :', res.body); //
+  //console.log('req.body :', req.body); //
+  //console.log('res.body :', res.body); //
 
   ProductSchema.find((err, allProds) => { //.find -> mongoose method
     if (err)
@@ -67,8 +67,8 @@ router.post('/createdata/', (req, res) => {
 //Delete
 
 router.delete('/deletedata/:id', (req, res) => {
-  console.log('req.body :', req.body); //
-  console.log('res.body :', res.body); //
+  //console.log('req.body :', req.body); //
+  //console.log('res.body :', res.body); //
   ProductSchema.findByIdAndDelete(req.params.id, err => {
     //.findByIdAndDelete -> mongoose
     // params is in res properties 
@@ -99,8 +99,8 @@ router.delete('/deletedata/:id', (req, res) => {
 
 //Update // to fix, does not update correct record
 router.put('/updatedata/:id', (req, res) => {
-  console.log('params.id: ', req.params.id)
-  console.log('req.body; ', req.body)
+  //console.log('params.id: ', req.params.id)
+  //console.log('req.body; ', req.body)
 
   ProductSchema.findOneAndUpdate({
       _id: req.params.id

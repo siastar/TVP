@@ -1,7 +1,8 @@
-console.log('...opening src/components/DBFront/Navbar.js')
+console.log('opening...');
+//TODO why class ?
 
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
 
@@ -13,38 +14,14 @@ class Navbar extends Component {
   };
 
   componentDidMount() {
-    console.log(this.state.compName, ' mounted');
+   console.log('unmounting...');
   };
 
   render() {
     return (
       <div>
-        <div>
-          <h6> rendering {this.state.compName} </h6>
-        </div>
-
         <nav>
           <p>NAVBAR</p>
-          {/* <Link to='/'> reset </Link> */}
-          {/* <div> */}
-          {/*   <ul> */}
-          {/*     <li> */}
-          {/*       <Link to='/getall/'> /getall - Get All Products </Link> */}
-          {/*     </li> */}
-          {/*     <li> */}
-          {/*       <Link to='/create/'> /create - Add Product </Link> */}
-          {/*     </li> */}
-          {/*     <li> */}
-          {/*       <Link to='/edit/'> /edit - Edit Product </Link> */}
-          {/*     </li> */}
-          {/*     <li> */}
-          {/*     <Link to='/remove/12345id'> /remove - Remove Product </Link> */}
-          {/*     </li> */}
-          {/*     {/\* <li> *\/} */}
-          {/*     {/\*   <Link to='/testingstuff'> /testingstuff - Test Stuff </Link> *\/} */}
-          {/*     {/\* </li> *\/} */}
-          {/*   </ul> */}
-          {/* </div> */}
         </nav>
       </div>
     );

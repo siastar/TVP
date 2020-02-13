@@ -1,13 +1,13 @@
-console.log('...opening');
+console.log('opening...');
 
 import React, {  Component } from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import axios from 'axios';
 import ShowProdsList from './ShowProdsList.js'
+import AddProd from './AddProd.js'
+//import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 // import Popup from "reactjs-popup";
 // import AddProd from './AddProd.js'
-import ProdPopUpForm from './ProdPopUpForm.js';
-import AddProd from './AddProd.js'
+//import ProdPopUpForm from './ProdPopUpForm.js';
 
 //server side addresses TODO avoid hard coding
 const getDataRoute = 'http://localhost:3000/products/getdata/';
@@ -33,7 +33,7 @@ class GetAllProds extends Component {
 
   componentDidMount() {
 
-    console.log(this.state.compName, ' mounted...');
+    //console.log(this.state.compName, ' mounted...');
 
     console.log('...fetching DB data via axios');
     axios.get(getDataRoute)
@@ -188,7 +188,7 @@ class GetAllProds extends Component {
   };
 
   componentWillUnmount() {
-    console.log(this.state.compName, ' unmounted');
+    console.log('unmounting...');
   };
 
   render() {

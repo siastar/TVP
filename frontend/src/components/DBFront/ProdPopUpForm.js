@@ -1,4 +1,4 @@
-console.log('opening --->');
+console.log('opening...');
 
 //this component creates a popup form used to add a new product or to edit an existing one
 
@@ -16,25 +16,24 @@ class ProdPopUpForm extends Component {
   }
 
   componentDidMount() {
-      console.log(this.state.compName, ' mounted...');
+      //console.log(this.state.compName, ' mounted...');
 
       switch(this.props.buttonlabel) {
       case 'Edit Product':
-          this.setState({ fieldIsRequired: false});
+          this.setState({ fieldIsRequired: false}); //Edit does not need all the fields covered
           break;
       case 'Add Product':
-          this.setState({ fieldIsRequired: true});
+          this.setState({ fieldIsRequired: true}); //Add needs all the fields covered
           break;
       default:
+          console.log('crashing soon...');
           break;
       }
-      
-     
       
   };
 
   componentWillUnmount() {
-    console.log(this.state.compName, ' unmounted...')
+   console.log('unmounting...');
   };
 
   // sendTestToParent(){
@@ -43,8 +42,8 @@ class ProdPopUpForm extends Component {
     
   render() {
 
-      console.log('rendering ', this.state.compName);
-      console.log('this...' , this);
+      // console.log('rendering ', this.state.compName);
+      // console.log('this...' , this);
       
 
       return (
