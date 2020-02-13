@@ -48,42 +48,40 @@ class SingleProd extends Component {
 
   render() {
     console.log('SingleProd this:', this);
-    const testValue = 'testValue';
+    //const testValue = 'testValue';
     return (
       <div>
-        <hr/>
-        <hr/>
-        <h6> rendering {this.state.compName} </h6>
-        <h6> -------- </h6>
+        <div className="productdata">
         {/* PRODUCT INFO */} 
           <h6>id: {this.props.product._id}</h6>
           <h6>artist: {this.props.product.artist}</h6>
           <h6>title: {this.props.product.title}</h6>
           <h6>year: {this.props.product.year}</h6>
+        </div>
      
-        {/* REMOVE BUTTON */} 
-        <button
-          onClick={ (e) => { //e stays per DOM event (click press key hoover etc)
+        <div>
+          {/* REMOVE BUTTON */}
+            <button
+              onClick={ (e) => { //e stays per DOM event (click press key hoover etc)
               e.preventDefault();
               this.triggerCRUDAction(e);//calls function by sending the event e as argument
               console.log('event.target: ' , e.target);
               // e.target returns  <button value="CRUD_delete"> an generally speaking
               // every element's attribute value
-          }}
-          value='CRUD_delete' //returned by e.target.value, specifies which action will be performed
-        >
-          Remove
-        </button>
+              }}
+              value='CRUD_delete' //returned by e.target.value, specifies which action will be performed
+            > Remove
+            </button>
+        </div>
 
         {/* EDIT BUTTON */}
         <div>
-        <EditProd
-          handleCRUDType={this.props.handleCRUDType}
-          product={this.props.product}
-          //duck = {'donalDuck'}
-        />
-        </div> <
-      /div>
+          <EditProd
+            handleCRUDType={this.props.handleCRUDType}
+            product={this.props.product}
+          />
+        </div>
+      </div>
     );
   };
 };

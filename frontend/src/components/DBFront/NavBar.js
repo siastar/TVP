@@ -4,7 +4,7 @@ console.log('opening...');
 import React, { Component } from 'react';
 //import { Link } from 'react-router-dom';
 
-class Navbar extends Component {
+class NavBar extends Component {
 
   constructor(props) {
     super(props);
@@ -19,7 +19,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <div>
+      <div className="navbar">
         <nav>
           <p>NAVBAR</p>
         </nav>
@@ -28,4 +28,4 @@ class Navbar extends Component {
   }
 };
 
-export default Navbar;
+export default NavBar;

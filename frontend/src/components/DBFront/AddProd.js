@@ -20,8 +20,8 @@ class AddProd extends Component {
 
     //state  
     this.state = {
-      compName: 'AddProd.js',
-      testmessage: 'original test message',
+      //compName: 'AddProd.js',
+      //testmessage: 'original test message',
       buttonlabel: '',
       //
       ////////////// product properties, TODO: wrap them in a separate object
@@ -113,7 +113,7 @@ class AddProd extends Component {
 
     console.log('...sending object to handleCRUDType: ', crudArgs);
     this.props.handleCRUDType(crudArgs);
-
+    //callback function, send data (crudArgs) to parent
   };
 
   componentWillUnmount() {
@@ -121,7 +121,7 @@ class AddProd extends Component {
   };
 
   render() {
-    console.log('this...', this);
+    //console.log('this...', this);
     return (
       <div>
 
