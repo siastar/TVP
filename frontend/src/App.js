@@ -1,4 +1,4 @@
-console.log('opening...')
+console.log('opening...');
 
 import React, {  Component } from 'react';
 import axios from 'axios';
