@@ -1,0 +1,39 @@
+
+$test-color: yellow;
+$test-bg: green;
+
+.teststyle {
+  color: $test-color;
+  background-color: $test-bg;
+}
+
+.app {
+  padding: 5px;
+  background-color: black;
+}
+
+.dbfront {
+  padding: 5px;
+  background-color: blue;
+}
+
+.navbar {
+  padding: 5px;
+  background-color: red;
+}
+
+.showprodlist {
+  padding: 5px;
+  background-color: gold;
+}
+
+.singleprod {
+  padding: 5px;
+  background-color: green;
+}
+
+.productdata {
+    padding: 15px;
+    background-color: gold;
+    color: purple;
+}
