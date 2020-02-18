@@ -1,6 +1,8 @@
 console.log('opening...');
 
-import React, {  Component } from 'react';
+import React, {
+  Component
+} from 'react';
 import axios from 'axios';
 import NavBar from './components/DBFront/NavBar.js';
 import ShowProdsList from './components/DBFront/ShowProdsList.js';
@@ -180,8 +182,8 @@ class App extends React.Component {
         //            crudAction:"CRUD_create" }
         break;
 
-    default:
-        console.log('going to crash...');       
+      default:
+        console.log('going to crash...');
         break;
     }
   };
@@ -192,36 +194,16 @@ class App extends React.Component {
 
   render() {
 
-      return (
-
-      <div className="app">
-
-        {/* <div> */}
-        {/*   <Button>click here */}
-        {/*   </Button> */}
-        {/* </div> */}
-          <NavBar/>
-        {/* <GetAllProds */}
-        {/*   products={this.state.products} */}
-        {/*   handleCRUDType={this.handleCRUDType}> */}
-
-        <div>
-          <AddProd
-            handleCRUDType={this.handleCRUDType}
-          />
+    return (
+        <div className="container">
+            <NavBar className='container'
+                    handleCRUDType={this.handleCRUDType}
+            />
+       
+       
+        <div className="showprodlist">
+          <ShowProdsList products={this.state.products} handleCRUDType={this.handleCRUDType} />
         </div>
-        
-        <div
-          className="showprodlist"
-        >
-         
-          <ShowProdsList
-            products={this.state.products}
-            handleCRUDType={this.handleCRUDType}
-          />
-         
-        </div>
-        {/* </GetAllProds> */}
       </div>
     );
   };

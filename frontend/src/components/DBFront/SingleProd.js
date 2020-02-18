@@ -51,38 +51,50 @@ class SingleProd extends Component {
     //const testValue = 'testValue';
     return (
       <div>
-        <div className="productdata">
-        {/* PRODUCT INFO */} 
-          <h6>id: {this.props.product._id}</h6>
-          <h6>artist: {this.props.product.artist}</h6>
-          <h6>title: {this.props.product.title}</h6>
-          <h6>year: {this.props.product.year}</h6>
+        <div className="card">
+          <img className="card-img-top"
+               alt="testImage"
+               src="../../../testimg/testcover.jpeg"
+            
+          />
+          <div className="card-body">
+            {/* PRODUCT INFO */}
+            {/* <h6>id: {this.props.product._id}</h6> */}
+            <ul className="list-group list-group-flush">
+            <li className="list-group-item"> {this.props.product.artist}</li>
+            <li className="list-group-item">{this.props.product.title}</li>
+            <li className="list-group-item">{this.props.product.year}</li>
+            <li className="list-group-item"> {this.props.product.price}</li>
+            </ul>
+            
+            {/* <h6>artist: {this.props.product.artist}</h6> */}
+            {/* <h6>title: {this.props.product.title}</h6> */}
+            {/* <h6>year: {this.props.product.year}</h6> */}
+            {/* <h6>price: {this.props.product.price}</h6> */}
+            
+
+          </div>
         </div>
-     
+
         <div>
           {/* REMOVE BUTTON */}
-            <button
-              onClick={ (e) => { //e stays per DOM event (click press key hoover etc)
-              e.preventDefault();
-              this.triggerCRUDAction(e);//calls function by sending the event e as argument
-              console.log('event.target: ' , e.target);
-              // e.target returns  <button value="CRUD_delete"> an generally speaking
+          <button className='btn btn-danger' onClick={ (e)=> { //e stays per DOM event (click press key hoover etc)
+            e.preventDefault();
+            this.triggerCRUDAction(e);//calls function by sending the event e as argument
+            console.log('event.target: ' , e.target);
+            // e.target returns <button value="CRUD_delete"> an generally speaking
               // every element's attribute value
               }}
-              value='CRUD_delete' //returned by e.target.value, specifies which action will be performed
-            > Remove
+              value='CRUD_delete' //returned by e.target.value, specifies which action will be performed (delete in this case)
+              > Remove
             </button>
         </div>
 
         {/* EDIT BUTTON */}
         <div>
-          <EditProd
-            handleCRUDType={this.props.handleCRUDType}
-            product={this.props.product}
-          />
+          <EditProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} />
         </div>
-      </div>
-    );
+      </div>    );
   };
 };
 

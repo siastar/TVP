@@ -2,53 +2,58 @@ console.log('opening...');
 
 //this component creates a popup form used to add a new product or to edit an existing one
 
-import React, {  Component} from 'react';
+import React, {
+  Component
+} from 'react';
 import Popup from "reactjs-popup";
+//const buttonStyle = null;
 
 class ProdPopUpForm extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-        compName: 'prodPopUpForm.js',
-        fieldIsRequired: null
+      compName: 'prodPopUpForm.js',
+      fieldIsRequired: null,
+      buttonStyle: null
     };
   }
 
   componentDidMount() {
-      //console.log(this.state.compName, ' mounted...');
+    //console.log(this.state.compName, ' mounted...');
 
-      switch(this.props.buttonlabel) {
+    switch (this.props.buttonlabel) {
       case 'Edit Product':
-          this.setState({ fieldIsRequired: false}); //Edit does not need all the fields covered
-          break;
+        this.setState({
+          fieldIsRequired: false,
+          buttonStyle: 'btn btn-warning'
+        }); //Edit does not need all the fields covered
+        break;
       case 'Add Product':
-          this.setState({ fieldIsRequired: true}); //Add needs all the fields covered
-          break;
+        this.setState({
+          fieldIsRequired: true,
+          buttonStyle: 'btn btn-primary'
+        }); //Add needs all the fields covered
+        break;
       default:
-          console.log('crashing soon...');
-          break;
-      }
-      
+        console.log('crashing soon...');
+        break;
+    }
   };
 
   componentWillUnmount() {
-   console.log('unmounting...');
+    console.log('unmounting...');
   };
 
   // sendTestToParent(){
   //     this.props.parentCallback('oh you!');
   //   }  
-    
-  render() {
 
-      // console.log('rendering ', this.state.compName);
-      // console.log('this...' , this);
-      
+  render() {
 
       return (
           <div>
-            <Popup trigger={<button className="btn btn-primary"> {this.props.buttonlabel} </button>} //button label changes according to the parent component
+        <Popup trigger={<button className={this.state.buttonStyle}> {this.props.buttonlabel} </button>} //button label changes according to the parent component
                    position="right center"
             >
               <div>
@@ -119,10 +124,10 @@ class ProdPopUpForm extends Component {
                     <input type="submit" value="Submit" />
                   </div>
                 </form>
-              </div>
-            </Popup>
-          </div>
-      );
+              </div> <
+      /Popup> <
+      /div>
+    );
 
   };
 };
