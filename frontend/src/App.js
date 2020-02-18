@@ -7,7 +7,7 @@ import axios from 'axios';
 import NavBar from './components/DBFront/NavBar.js';
 import ShowProdsList from './components/DBFront/ShowProdsList.js';
 import AddProd from './components/DBFront/AddProd.js';
-//import {Button} from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 const getDataRoute = 'http://localhost:3000/products/getdata/';
 const deleteDataRoute = 'http://localhost:3000/products/deletedata/';
@@ -200,7 +200,8 @@ class App extends React.Component {
                     handleCRUDType={this.handleCRUDType}
             />
        
-       
+          <Button variant="primary">Primary</Button>
+          
         <div className="showprodlist">
           <ShowProdsList products={this.state.products} handleCRUDType={this.handleCRUDType} />
         </div>
