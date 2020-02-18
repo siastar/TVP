@@ -48,7 +48,7 @@ class ProdPopUpForm extends Component {
 
       return (
           <div>
-            <Popup trigger={<button> {this.props.buttonlabel} </button>} //button label changes according to the parent component
+            <Popup trigger={<button className="btn btn-primary"> {this.props.buttonlabel} </button>} //button label changes according to the parent component
                    position="right center"
             >
               <div>

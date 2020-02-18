@@ -3,6 +3,7 @@ console.log('opening...');
 
 import React, { Component } from 'react';
 //import { Link } from 'react-router-dom';
+//import 'bootstrap';
 
 class NavBar extends Component {
 
@@ -22,6 +23,7 @@ class NavBar extends Component {
       <div className="navbar">
         <nav>
           <p>NAVBAR</p>
+          <button className="btn btn-primary" type="submit">Button</button>
         </nav>
       </div>
     );

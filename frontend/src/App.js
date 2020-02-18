@@ -5,6 +5,7 @@ import axios from 'axios';
 import NavBar from './components/DBFront/NavBar.js';
 import ShowProdsList from './components/DBFront/ShowProdsList.js';
 import AddProd from './components/DBFront/AddProd.js';
+//import {Button} from 'react-bootstrap';
 
 const getDataRoute = 'http://localhost:3000/products/getdata/';
 const deleteDataRoute = 'http://localhost:3000/products/deletedata/';
@@ -191,9 +192,14 @@ class App extends React.Component {
 
   render() {
 
-    return (
+      return (
+
       <div className="app">
 
+        {/* <div> */}
+        {/*   <Button>click here */}
+        {/*   </Button> */}
+        {/* </div> */}
           <NavBar/>
         {/* <GetAllProds */}
         {/*   products={this.state.products} */}
