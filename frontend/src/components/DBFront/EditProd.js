@@ -4,7 +4,7 @@ console.log('opening...');
 // https://dev.to/spukas/moving-arguments-from-child-to-parent-component-in-react-25lp
 // https://github.com/siastar/proptesting
 
-import React, {  Component} from 'react';
+import React, { Component } from 'react';
 import ProdPopUpForm from './ProdPopUpForm.js';
 
 //import axios from 'axios';
@@ -138,22 +138,21 @@ class EditProd extends Component {
   };
 
   render() {
-    console.log('this...', this);
+    //console.log('this...', this);
     return (
         <div>
-        <div>
-        <ProdPopUpForm
-          product={this.props.product}
-          buttonlabel = 'Edit Product'
-          onChangeArtist = {this.onChangeArtist}
-          onChangeTitle = {this.onChangeTitle}
-          onChangeYear = {this.onChangeYear}
-          onChangePrice = {this.onChangePrice}
-          onChangeFrontCover = {this.onChangeFrontCover}
-          onChangeBackCover = {this.onChangeBackCover}
-          onFormSubmit = {this.onFormSubmit}
-        >
-        </ProdPopUpForm>
+          <div>
+            <ProdPopUpForm
+              product={this.props.product}
+              buttonlabel='Edit Product'
+              onChangeArtist={this.onChangeArtist}
+              onChangeTitle={this.onChangeTitle}
+              onChangeYear={this.onChangeYear}
+              onChangePrice={this.onChangePrice}
+              onChangeFrontCover={this.onChangeFrontCover}
+              onChangeBackCover={this.onChangeBackCover}
+              onFormSubmit={this.onFormSubmit}>
+            </ProdPopUpForm>
           </div>
 
         </div>

@@ -200,10 +200,14 @@ class App extends React.Component {
                     handleCRUDType={this.handleCRUDType}
             />
        
-          <Button variant="primary">Primary</Button>
+          <Button variant="primary">Primary from react-bootstrap</Button>
           
-        <div className="showprodlist">
-          <ShowProdsList products={this.state.products} handleCRUDType={this.handleCRUDType} />
+          <div
+          >
+          <ShowProdsList
+            className='showprodslist'
+            products={this.state.products}
+            handleCRUDType={this.handleCRUDType} />
         </div>
       </div>
     );

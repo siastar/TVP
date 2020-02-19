@@ -26,13 +26,13 @@ class ProdPopUpForm extends Component {
       case 'Edit Product':
         this.setState({
           fieldIsRequired: false,
-          buttonStyle: 'btn btn-warning'
+          buttonStyle: null
         }); //Edit does not need all the fields covered
         break;
       case 'Add Product':
         this.setState({
           fieldIsRequired: true,
-          buttonStyle: 'btn btn-primary'
+          buttonStyle: null
         }); //Add needs all the fields covered
         break;
       default:

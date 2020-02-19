@@ -5,42 +5,33 @@ console.log('opening...');
 import React, {
   Component
 } from 'react';
+import Row from 'react-bootstrap/Row';
+
 import SingleProd from './SingleProd.js'
 
 class ShowProdsList extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      compName: 'ShowProdsList.js',
-      //products: []
-    };
-  };
-
-  componentDidMount() {
-    console.log('unmounting...');
-
-  }
-
   render() {
+
     const DbProducts = this.props.products;
     //console.log('DbProducts' , DbProducts);
     //console.log('this...' , this);
     //NOTE this is not the DB but the state of the parent component GetAllProds.js
 
-    const showList = DbProducts.map((product) =>
-      <div className="singleprod">
-        <SingleProd
+    let showList = DbProducts.map((product) =>
+      <SingleProd
+          className='' /* bootstrap */
           key={product._id}
           product={product}
           handleCRUDType={this.props.handleCRUDType} />
-      </div>
     );
 
     return (
-      <div> {showList} </div>
-
+        
+      <div className='d-flex flex-wrap showprodslist'> {showList} </div>
+                  // 'd-flex flex-wrap' bootstrap
     );
+      
   }
 };
 

@@ -23,18 +23,32 @@ $test-bg: green;
   background-color: red;
 }
 
-.showprodlist {
+.showprodslist {
   padding: 5px;
-  background-color: gold;
+  background-color: purple;
+  //flex-direction: row;
+  justify-content: center;
+  
 }
 
 .singleprod {
   padding: 5px;
-  background-color: green;
+  width:12rem;
+              
+	      
 }
+
+// .product-container {
+//     background-color: purple;
+//     align-content: center;
+// }
 
 .productdata {
     padding: 15px;
     background-color: gold;
     color: purple;
+}
+
+.card-img {
+    width: 25%;
 }
