@@ -200,7 +200,7 @@ class App extends React.Component {
                     handleCRUDType={this.handleCRUDType}
             />
        
-          <Button variant="primary">Primary from react-bootstrap</Button>
+          {/* <Button variant="primary">Primary from react-bootstrap</Button> */}
           
           <div
           >

@@ -13,7 +13,6 @@ class ProdPopUpForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      compName: 'prodPopUpForm.js',
       fieldIsRequired: null,
       buttonStyle: null
     };
@@ -23,16 +22,16 @@ class ProdPopUpForm extends Component {
     //console.log(this.state.compName, ' mounted...');
 
     switch (this.props.buttonlabel) {
-      case 'Edit Product':
+      case 'Edit':
         this.setState({
           fieldIsRequired: false,
-          buttonStyle: null
+          buttonStyle: "btn btn-warning btn-sm"
         }); //Edit does not need all the fields covered
         break;
-      case 'Add Product':
+      case 'Add New':
         this.setState({
           fieldIsRequired: true,
-          buttonStyle: null
+          buttonStyle: "btn btn-primary btn-sm"
         }); //Add needs all the fields covered
         break;
       default:
@@ -53,81 +52,41 @@ class ProdPopUpForm extends Component {
 
       return (
           <div>
-        <Popup trigger={<button className={this.state.buttonStyle}> {this.props.buttonlabel} </button>} //button label changes according to the parent component
-                   position="right center"
-            >
-              <div>
-                <form onSubmit={this.props.onFormSubmit}>
+            <Popup trigger={ <button className={this.state.buttonStyle}> {this.props.buttonlabel}
+              </button>
+              } //button label changes according to the parent component
+              position="bottom center"
+              modal
+              >
+              <form onSubmit={this.props.onFormSubmit}>
+                <div className="form-group">
+                    {/* artist */}                  
+                    <input className="form-control" type="text" required={this.state.fieldIsRequired} value={this.props.artist} placeholder={this.props.product.artist || 'artist' } onChange={this.props.onChangeArtist}>
+                    </input>
+                    {/* title */}
+                    <input className="form-control" type="text" required={this.state.fieldIsRequired} value={this.props.title} placeholder={this.props.product.title || 'title' } onChange={this.props.onChangeTitle}>
+                    </input>
+                    {/* year */}                  
+                    <input className="form-control" type="text" required={this.state.fieldIsRequired} value={this.props.year} placeholder={this.props.product.year || 'year' } onChange={this.props.onChangeYear}>
+                    </input>
+                    {/* price */}
+                    <input className="form-control" type="text" required={this.state.fieldIsRequired} value={this.props.price} placeholder={this.props.product.price || 'price' } onChange={this.props.onChangePrice}>
+                    </input>
+                    {/* frontcover */}
+                    <input className="form-control" type="text" required={this.state.fieldIsRequired} value={this.props.frontcover} placeholder={this.props.product.frontcover || 'front cover' } onChange={this.props.onChangeFrontCover}>
+                    </input>
+                    {/* backcover */}
+                    <input  className="form-control" type="text" required={this.state.fieldIsRequired} value={this.props.backcover} placeholder={this.props.product.backcover || 'back cover' } onChange={this.props.onChangeBackCover}>
+                    </input>
                   
-                  <div>
-                    <label>artist: </label>
-                    <input type="text"
-                           required = {this.state.fieldIsRequired}
-                           value={this.props.artist}
-                           placeholder={this.props.product.artist || 'artist'}
-                           onChange={this.props.onChangeArtist}
-                    >
-                    </input>
-                  </div>
+                  <button className="btn btn-primary" type="submit" value="Submit">
+                    submit
+                  </button>
                   
-                  <div>
-                    <label>title: </label>
-                    <input type="text"
-                           required = {this.state.fieldIsRequired}
-                           value={this.props.title}
-                           placeholder={this.props.product.title || 'title'}
-                           onChange={this.props.onChangeTitle}>
-                    </input>
-                  </div>
-
-                  <div>
-                    <label>year: </label>
-                    <input type="text"
-                           required = {this.state.fieldIsRequired}
-                           value={this.props.year}
-                           placeholder={this.props.product.year || 'year'}
-                           onChange={this.props.onChangeYear}>
-                    </input>
-                  </div>
-
-                  <div>
-                    <label>price: </label>
-                    <input type="text"
-                           required = {this.state.fieldIsRequired}
-                           value={this.props.price}
-                           placeholder={this.props.product.price || 'price'}
-                           onChange={this.props.onChangePrice}>
-                    </input>
-                  </div>
-
-                  <div>
-                    <label>frontcover: </label>
-                    <input type="text"
-                           required = {this.state.fieldIsRequired}
-                           value={this.props.frontcover}
-                           placeholder={this.props.product.frontcover || 'front cover'}
-                           onChange={this.props.onChangeFrontCover}>
-                    </input>
-                  </div>
-
-                  <div>
-                    <label>backcover: </label>
-                    <input type="text"
-                           required = {this.state.fieldIsRequired}
-                           value={this.props.backcover}
-                           placeholder={this.props.product.backcover || 'back cover'}
-                           onChange={this.props.onChangeBackCover}>
-                    </input>
-                  </div>
-                  
-                  <div>
-                    <input type="submit" value="Submit" />
-                  </div>
-                </form>
-              </div> <
-      /Popup> <
-      /div>
-    );
+                </div>
+              </form>
+            </Popup>
+          </div>  );
 
   };
 };

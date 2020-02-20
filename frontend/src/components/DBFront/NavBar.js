@@ -26,6 +26,8 @@ class NavBar extends Component {
           <p>DataBase Front: </p>
 
           <AddProd handleCRUDType={this.props.handleCRUDType} />
+
+          <button className="btn btn-warning"> login </button>
           
           {/* <button className="btn btn-outline-success" type="submit">Test Button</button> */}
         </nav>

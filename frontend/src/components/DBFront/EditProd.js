@@ -138,13 +138,11 @@ class EditProd extends Component {
   };
 
   render() {
-    //console.log('this...', this);
     return (
         <div>
-          <div>
             <ProdPopUpForm
               product={this.props.product}
-              buttonlabel='Edit Product'
+              buttonlabel='Edit'
               onChangeArtist={this.onChangeArtist}
               onChangeTitle={this.onChangeTitle}
               onChangeYear={this.onChangeYear}
@@ -153,8 +151,6 @@ class EditProd extends Component {
               onChangeBackCover={this.onChangeBackCover}
               onFormSubmit={this.onFormSubmit}>
             </ProdPopUpForm>
-          </div>
-
         </div>
     );
   };

@@ -127,7 +127,7 @@ class AddProd extends Component {
 
         <ProdPopUpForm
           product=''
-          buttonlabel = 'Add Product'//prop routed down via DBFront 'Add Product' || 'Edit Product'
+          buttonlabel = 'Add New'//prop routed down via DBFront 'Add New' || 'Edit'
           onChangeArtist = {this.onChangeArtist}
           onChangeTitle = {this.onChangeTitle}
           onChangeYear = {this.onChangeYear}

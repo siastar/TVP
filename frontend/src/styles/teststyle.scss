@@ -27,7 +27,7 @@ $test-bg: green;
   padding: 5px;
   background-color: purple;
   //flex-direction: row;
-  justify-content: center;
+  justify-content: center; //centers the flex elements in their div
   
 }
 
@@ -49,6 +49,6 @@ $test-bg: green;
     color: purple;
 }
 
-.card-img {
-    width: 25%;
-}
+// .card-img {
+//     width: 25%;
+// }
