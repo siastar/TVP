@@ -22,10 +22,12 @@ class App extends React.Component {
     this.state = {
       //testProperty: 'test prop 0',
       //compName: 'GetAllProds.js',
-      products: []
+      products: [],
+      userLogStatus: false
     };
 
-    //binding   
+    //binding
+    this.onLogin = this.onLogin.bind(this);
     this.deleteProd = this.deleteProd.bind(this); //bound because it is called within updateProdslist
     this.handleCRUDType = this.handleCRUDType.bind(this);
   }
@@ -56,6 +58,18 @@ class App extends React.Component {
         console.log('error fetching DB', err)
       });
   };
+
+  onLogin() {
+    if (!this.state.userLogStatus) {
+      this.setState({
+        userLogStatus: true
+      });
+    } else {
+      this.setState({
+        userLogStatus: false
+      });
+    }
+  }
 
   addProd(newProduct) {
     console.log('addProd args...', newProduct);
@@ -195,20 +209,20 @@ class App extends React.Component {
   render() {
 
     return (
-        <div className="container">
+      <div className="container">
             <NavBar className='container'
                     handleCRUDType={this.handleCRUDType}
+                    onLogin={this.onLogin}
+                    userLogStatus={this.state.userLogStatus}//needed for the button label (login/logout)
+              
             />
-       
-          {/* <Button variant="primary">Primary from react-bootstrap</Button> */}
-          
-          <div
-          >
+        
           <ShowProdsList
             className='showprodslist'
             products={this.state.products}
+            userLogStatus={this.state.userLogStatus}//needed to show or not tools buttons
             handleCRUDType={this.handleCRUDType} />
-        </div>
+        
       </div>
     );
   };

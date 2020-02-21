@@ -42,12 +42,10 @@ class EditProd extends Component {
       frontcover: '',
       backcover: ''
       //////////////
-    
     };
   };
 
     componentDidMount() {
-              
       this.setState({
           artist: this.props.product.artist,
           title: this.props.product.title,

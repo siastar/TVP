@@ -5,9 +5,11 @@ import React, {
 } from 'react';
 
 import Popup from 'reactjs-popup';
-import { Button, Container, Card, Grid, Row, Col, Image, ListGroup } from 'react-bootstrap'; 
+import {
+  Card,
+  ListGroup
+} from 'react-bootstrap';
 
-//import Link from 'react-router-dom';
 import EditProd from './EditProd.js';
 import DelProd from './DelProd.js';
 
@@ -16,9 +18,7 @@ class SingleProd extends Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
-  //     compName: 'SingleProd.js',
-  //     errorToHandle: false,
-  //     product: {}
+  //       adminButtons: false
   //   };
   // }
 
@@ -29,13 +29,18 @@ class SingleProd extends Component {
   componentWillUnmount() {
     console.log('unmounted');
   };
+   
+    render() {
 
-  render() {
-    console.log('SingleProd this:', this);
-    //const testValue = 'testValue';
+      let buttons = '';
+      if(this.props.userLogStatus == true){
+          buttons = <div> admin </div>
+      }
+      else {buttons = <div>not admin</div> }
+      
     return (
 
-          <Card className='p-2 singleprod'> 
+      <Card className='p-2 singleprod'> 
             <Card.Img variant="top" src="../../../testimg/testcover.jpeg" />
             <Card.Body>
               {/* <Card.Title>Card Title</Card.Title> */}
@@ -45,10 +50,11 @@ class SingleProd extends Component {
                 <ListGroup.Item> {this.props.product.title}</ListGroup.Item>
                 <ListGroup.Item> € {this.props.product.price}</ListGroup.Item>
               </ListGroup>
+
+              <div>---adminbuttons: {buttons} ---</div>
               
               {/* EDIT BUTTON */}
               <EditProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} />
-
               {/* REMOVE BUTTON */}
               <DelProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} />
               
@@ -59,4 +65,3 @@ class SingleProd extends Component {
 };
 
 export default SingleProd;
-

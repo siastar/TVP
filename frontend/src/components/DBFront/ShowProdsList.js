@@ -20,18 +20,19 @@ class ShowProdsList extends Component {
 
     let showList = DbProducts.map((product) =>
       <SingleProd
-          className='' /* bootstrap */
-          key={product._id}
-          product={product}
-          handleCRUDType={this.props.handleCRUDType} />
+        className='' /* bootstrap */
+        product={product}
+        key={product._id}//unique identifier
+        userLogStatus={this.props.userLogStatus}
+        handleCRUDType={this.props.handleCRUDType} />
     );
 
     return (
         
       <div className='d-flex flex-wrap showprodslist'> {showList} </div>
-                  // 'd-flex flex-wrap' bootstrap
+      // 'd-flex flex-wrap' bootstrap class 
     );
-      
+
   }
 };
 

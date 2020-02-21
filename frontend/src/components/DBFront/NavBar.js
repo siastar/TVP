@@ -3,6 +3,7 @@ console.log('opening...');
 
 import React, { Component } from 'react';
 import AddProd from './AddProd.js';
+import UserLogin from './UserLogin.js'
 //import { Link } from 'react-router-dom';
 //import 'bootstrap';
 
@@ -16,7 +17,7 @@ class NavBar extends Component {
   // };
 
   componentDidMount() {
-   console.log('unmounting...');
+   console.log('mounted...');
   };
 
   render() {
@@ -24,12 +25,9 @@ class NavBar extends Component {
       <div className="navbar">
         <nav>
           <p>DataBase Front: </p>
-
           <AddProd handleCRUDType={this.props.handleCRUDType} />
-
-          <button className="btn btn-warning"> login </button>
-          
-          {/* <button className="btn btn-outline-success" type="submit">Test Button</button> */}
+          <UserLogin onLogin={this.props.onLogin}
+                     userLogStatus={this.props.userLogStatus}/>
         </nav>
       </div>
     );
