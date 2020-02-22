@@ -20,14 +20,30 @@ class NavBar extends Component {
    console.log('mounted...');
   };
 
-  render() {
+    render() {
+
+let adminButtons = '';
+    if (this.props.userLogStatus == true) {
+      adminButtons = <div>
+              {/* ADD PRODUCT BUTTON */}
+                  <AddProd handleCRUDType={this.props.handleCRUDType} />
+                </div>
+    } else {
+      adminButtons = <div>not admin</div>
+    }
+
+
+
+        
     return (
       <div className="navbar">
         <nav>
           <p>DataBase Front: </p>
-          <AddProd handleCRUDType={this.props.handleCRUDType} />
-          <UserLogin onLogin={this.props.onLogin}
-                     userLogStatus={this.props.userLogStatus}/>
+
+          <UserLogin
+            onLogin={this.props.onLogin}
+            userLogStatus={this.props.userLogStatus}/>
+          <div>{adminButtons}</div>
         </nav>
       </div>
     );

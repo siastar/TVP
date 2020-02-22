@@ -29,15 +29,21 @@ class SingleProd extends Component {
   componentWillUnmount() {
     console.log('unmounted');
   };
-   
-    render() {
 
-      let buttons = '';
-      if(this.props.userLogStatus == true){
-          buttons = <div> admin </div>
-      }
-      else {buttons = <div>not admin</div> }
-      
+  render() {
+
+    let adminButtons = '';
+    if (this.props.userLogStatus == true) {
+      adminButtons = <div>
+              {/* EDIT BUTTON */}
+                  <EditProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} />
+              {/* REMOVE BUTTON */}
+                  <DelProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} />
+                </div>
+    } else {
+      adminButtons = <div>not admin</div>
+    }
+
     return (
 
       <Card className='p-2 singleprod'> 
@@ -51,12 +57,12 @@ class SingleProd extends Component {
                 <ListGroup.Item> € {this.props.product.price}</ListGroup.Item>
               </ListGroup>
 
-              <div>---adminbuttons: {buttons} ---</div>
+              <div> {adminButtons} </div>
               
-              {/* EDIT BUTTON */}
-              <EditProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} />
-              {/* REMOVE BUTTON */}
-              <DelProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} />
+              {/* {/\* EDIT BUTTON *\/} */}
+              {/* <EditProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} /> */}
+              {/* {/\* REMOVE BUTTON *\/} */}
+              {/* <DelProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} /> */}
               
             </Card.Body>
           </Card>
