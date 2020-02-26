@@ -43,6 +43,7 @@ let adminButtons = '';
           <UserLogin
             onLogin={this.props.onLogin}
             userLogStatus={this.props.userLogStatus}/>
+
           <div>{adminButtons}</div>
         </nav>
       </div>

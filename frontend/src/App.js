@@ -59,7 +59,8 @@ class App extends React.Component {
       });
   };
 
-  onLogin() {
+    onLogin() {
+        console.log('hehe')
     if (!this.state.userLogStatus) {
       this.setState({
         userLogStatus: true

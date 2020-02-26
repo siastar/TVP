@@ -52,9 +52,12 @@ class ProdPopUpForm extends Component {
 
       return (
           <div>
-            <Popup trigger={ <button className={this.state.buttonStyle}> {this.props.buttonlabel}
-              </button>
-              } //button label changes according to the parent component
+            <Popup
+              trigger={ <button
+                          className={this.state.buttonStyle}
+                        > {this.props.buttonlabel}
+                        </button>
+                      } //button label changes according to the parent component
               position="bottom center"
               modal
               >
