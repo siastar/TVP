@@ -122,12 +122,19 @@ class AddProd extends Component {
 
   render() {
     //console.log('this...', this);
-    return (
-      <div>
 
+      let fieldIsRequired = true;
+      let buttonLabel = 'Add New';
+      let buttonStyle = 'btn btn-primary btn-sm'
+
+      return (
+      <div>
         <ProdPopUpForm
+          
           product=''
-          buttonlabel = 'Add New'//prop routed down via DBFront 'Add New' || 'Edit'
+          fieldisRequired = {fieldIsRequired}
+          buttonLabel = {buttonLabel}//prop routed down via DBFront 'Add New' || 'Edit'
+          buttonStyle = {buttonStyle}
           onChangeArtist = {this.onChangeArtist}
           onChangeTitle = {this.onChangeTitle}
           onChangeYear = {this.onChangeYear}
@@ -137,8 +144,7 @@ class AddProd extends Component {
           onFormSubmit = {this.onFormSubmit}
         >
         </ProdPopUpForm>
-
-        </div>
+      </div>
     );
   };
 };

@@ -23,7 +23,8 @@ class App extends React.Component {
       //testProperty: 'test prop 0',
       //compName: 'GetAllProds.js',
       products: [],
-      userLogStatus: false
+        userLogStatus: false
+        
     };
 
     //binding

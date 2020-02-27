@@ -128,19 +128,25 @@ class EditProd extends Component {
       }
       
       console.log('ready to delivery object:', crudArgs);
-
       this.props.handleCRUDType(crudArgs);
      
       //this.props.handleCRUDType(crudArgs);
-
   };
 
   render() {
-    return (
+
+      let fieldIsRequired = false;
+      let buttonLabel = 'Edit';
+      let buttonStyle = 'btn btn-warning btn-sm'
+
+      return (
+          
         <div>
             <ProdPopUpForm
               product={this.props.product}
-              buttonlabel='Edit'
+              fieldIsRequired = {fieldIsRequired}
+              buttonLabel = {buttonLabel}//prop routed down via DBFront 'Add New' || 'Edit'
+              buttonStyle = {buttonStyle}
               onChangeArtist={this.onChangeArtist}
               onChangeTitle={this.onChangeTitle}
               onChangeYear={this.onChangeYear}
