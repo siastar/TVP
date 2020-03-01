@@ -9,16 +9,15 @@ import Row from 'react-bootstrap/Row';
 
 import SingleProd from './SingleProd.js'
 
+
+
 class ShowProdsList extends Component {
 
   render() {
 
-    const DbProducts = this.props.products;
-    //console.log('DbProducts' , DbProducts);
-    //console.log('this...' , this);
-    //NOTE this is not the DB but the state of the parent component GetAllProds.js
+    const listedProducts = this.props.products;
 
-    let showList = DbProducts.map((product) =>
+    let showList = listedProducts.map((product) =>
       <SingleProd
         className='' /* bootstrap */
         product={product}
@@ -32,7 +31,6 @@ class ShowProdsList extends Component {
       <div className='d-flex flex-wrap showprodslist'> {showList} </div>
       // 'd-flex flex-wrap' bootstrap class 
     );
-
   }
 };
 

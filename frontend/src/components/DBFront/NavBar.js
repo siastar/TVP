@@ -2,7 +2,9 @@ console.log('opening...');
 //TODO why class ?
 
 import React, { Component } from 'react';
-import AddProd from './AddProd.js';
+//import AddProd from './AddProd.js';
+import AddProd2 from './AddProd2.js';
+
 import UserLogin from './UserLogin.js'
 //import { Link } from 'react-router-dom';
 //import 'bootstrap';
@@ -26,8 +28,9 @@ let adminButtons = '';
     if (this.props.userLogStatus == true) {
       adminButtons = <div>
               {/* ADD PRODUCT BUTTON */}
-                  <AddProd handleCRUDType={this.props.handleCRUDType} />
-                </div>
+                  {/* <AddProd handleCRUDType={this.props.handleCRUDType} /> */}
+                      <AddProd2 handleCRUDType={this.props.handleCRUDType} />
+                     </div>
     } else {
       adminButtons = <div>not admin</div>
     }
