@@ -2,8 +2,7 @@ console.log('opening...');
 //TODO why class ?
 
 import React, { Component } from 'react';
-//import AddProd from './AddProd.js';
-import AddProd2 from './AddProd2.js';
+import AddProd from './AddProd.js';
 
 import UserLogin from './UserLogin.js'
 //import { Link } from 'react-router-dom';
@@ -28,8 +27,9 @@ let adminButtons = '';
     if (this.props.userLogStatus == true) {
       adminButtons = <div>
               {/* ADD PRODUCT BUTTON */}
-                  {/* <AddProd handleCRUDType={this.props.handleCRUDType} /> */}
-                      <AddProd2 handleCRUDType={this.props.handleCRUDType} />
+                       <AddProd handleCRUDType={this.props.handleCRUDType}
+                                productHandlers = {this.props.productHandlers}
+                       />
                      </div>
     } else {
       adminButtons = <div>not admin</div>
@@ -44,8 +44,9 @@ let adminButtons = '';
           <p>DataBase Front: </p>
 
           <UserLogin
-            onLogin={this.props.onLogin}
-            userLogStatus={this.props.userLogStatus}/>
+            onLogin = {this.props.onLogin}
+            userLogStatus = {this.props.userLogStatus}
+          />
 
           <div>{adminButtons}</div>
         </nav>

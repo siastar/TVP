@@ -1,37 +1,38 @@
 console.log('opening...');
 
-import React, {  Component } from 'react';
+//this component creates a popup form used to add a new product or to edit an existing one
+
+import React, {
+  Component
+} from 'react';
 import Popup from "reactjs-popup";
+//const buttonStyle = null;
 
 class ProdPopUpForm extends Component {
 
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     fieldIsRequired: null,
+  //     buttonStyle: null
+  //   };
+  // }
+
   componentDidMount() {
     console.log('did mount');
+ 
   };
 
   componentWillUnmount() {
     console.log('unmounting...');
   };
 
-    
     render() {
-
-        let submitAction = null;
-        if (this.props.buttonLabel == 'Add New'){
-            submitAction = this.props.productHandlers.onAddSubmit
-        }
-        else if (this.props.buttonLabel == 'Edit'){
-            //submitAction = this.props.productHandlers.onEditSubmit;
-            //https://stackoverflow.com/questions/42597602/react-onclick-pass-event-with-parameter
-            submitAction = (event) => {
-                //send event with additional parameters
-                this.props.productHandlers.onEditSubmit(event, this.props.product);
-            }
-        }
-        else {console.log('about to crash...')}
-        
-        return (
+ 
+      //console.log('check' , this.props);
+      return (
           <div>
+            <p>{this.props.testxyz}</p>
             <Popup
               trigger={ <button
                           className={this.props.buttonStyle}
@@ -42,7 +43,7 @@ class ProdPopUpForm extends Component {
               closeOnDocumentClick
               modal
               >
-              <form onSubmit={submitAction}>
+              <form onSubmit={this.props.onFormSubmit}>
                 <div className="form-group">
                     {/* artist */}                  
                   <input className="form-control"
@@ -50,7 +51,7 @@ class ProdPopUpForm extends Component {
                          required={this.props.fieldIsRequired}
                          value={this.props.artist}
                          placeholder={this.props.product.artist || 'artist' }
-                         onChange={this.props.productHandlers.onChangeArtist}>
+                         onChange={this.props.onChangeArtist}>
                     </input>
                     {/* title */}
                   <input className="form-control"
@@ -58,7 +59,7 @@ class ProdPopUpForm extends Component {
                          required={this.props.fieldIsRequired}
                          value={this.props.title}
                          placeholder={this.props.product.title || 'title' }
-                         onChange={this.props.productHandlers.onChangeTitle}>
+                         onChange={this.props.onChangeTitle}>
                     </input>
                     {/* year */}                  
                   <input className="form-control"
@@ -66,7 +67,7 @@ class ProdPopUpForm extends Component {
                          required={this.props.fieldIsRequired}
                          value={this.props.year}
                          placeholder={this.props.product.year || 'year' }
-                         onChange={this.props.productHandlers.onChangeYear}>
+                         onChange={this.props.onChangeYear}>
                     </input>
                     {/* price */}
                   <input className="form-control"
@@ -74,7 +75,7 @@ class ProdPopUpForm extends Component {
                          required={this.props.fieldIsRequired}
                          value={this.props.price}
                          placeholder={this.props.product.price || 'price' }
-                         onChange={this.props.productHandlers.onChangePrice}>
+                         onChange={this.props.onChangePrice}>
                     </input>
                     {/* frontcover */}
                   <input className="form-control"
@@ -82,7 +83,7 @@ class ProdPopUpForm extends Component {
                          required={this.props.fieldIsRequired}
                          value={this.props.frontcover}
                          placeholder={this.props.product.frontcover || 'front cover' }
-                         onChange={this.props.productHandlers.onChangeFrontCover}>
+                         onChange={this.props.onChangeFrontCover}>
                     </input>
                     {/* backcover */}
                   <input  className="form-control"
@@ -90,13 +91,13 @@ class ProdPopUpForm extends Component {
                           required={this.props.fieldIsRequired}
                           value={this.props.backcover}
                           placeholder={this.props.product.backcover || 'back cover' }
-                          onChange={this.props.productHandlers.onChangeBackCover}>
+                          onChange={this.props.onChangeBackCover}>
                     </input>
                   <button className="btn btn-primary"
                           type="submit"
                           value="Submit"
                           >
-                    Submit
+                    submit
                   </button>
                 </div>
               </form>

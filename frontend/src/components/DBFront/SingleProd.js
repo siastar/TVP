@@ -36,10 +36,15 @@ class SingleProd extends Component {
     if (this.props.userLogStatus == true) {
       adminButtons = <div>
               {/* EDIT BUTTON */}
-                  <EditProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} />
+                       <EditProd handleCRUDType = {this.props.handleCRUDType}
+                                 product = {this.props.product}
+                                 productHandlers = {this.props.productHandlers}
+                       />
               {/* REMOVE BUTTON */}
-                  <DelProd handleCRUDType={this.props.handleCRUDType} product={this.props.product} />
-                </div>
+                       <DelProd handleCRUDType = {this.props.handleCRUDType}
+                                product={this.props.product}
+                       />
+                    </div>
     } else {
       adminButtons = <div>not admin</div>
     }

@@ -21,9 +21,11 @@ class ShowProdsList extends Component {
       <SingleProd
         className='' /* bootstrap */
         product={product}
-        key={product._id}//unique identifier
+        key={product._id}//unique identifier for the child
         userLogStatus={this.props.userLogStatus}
-        handleCRUDType={this.props.handleCRUDType} />
+        handleCRUDType={this.props.handleCRUDType}
+        productHandlers={this.props.productHandlers}
+      />
     );
 
     return (
