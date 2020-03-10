@@ -50,7 +50,7 @@ class SingleProd extends Component {
     }
 
     return (
-
+        //'react-bootstrap'
       <Card className='p-2 singleprod'> 
             <Card.Img variant="top" src="../../../testimg/testcover.jpeg" />
             <Card.Body>
