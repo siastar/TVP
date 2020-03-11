@@ -275,16 +275,20 @@ class DBApp extends React.Component {
   }
 
   onChangeUsername(e) {
-    loginCreds.username = e.target.value;
+      loginCreds.username = e.target.value;
+      console.log('logincreds zzzy' , loginCreds);
   }
 
   onChangePassword(e) {
-    loginCreds.password = e.target.value;
+      loginCreds.password = e.target.value;
+      console.log('logincreds zzzy' , loginCreds);
   }
 
   onCredsSubmit(event) {
     event.preventDefault();
-    console.log("zzzy on cred submit", event);
+      console.log("zzzy login credentials" , loginCreds);
+      
+      
   }
 
   ////PRODUCT HANDLERS
@@ -341,7 +345,7 @@ class DBApp extends React.Component {
       onLogin: this.onLogin,
       userLogStatus: this.state.userLogStatus,
       toggleLoginModal: this.toggleLoginModal,
-      shoeLoginModal: this.state.showLoginModal
+      showLoginModal: this.state.showLoginModal
     };
 
     let showModal = null;
@@ -358,12 +362,13 @@ class DBApp extends React.Component {
         <NavBar
           className="container"
           productHandlers={productHandlers}
+          loginHandlers={loginHandlers}
           handleCRUDType={this.handleCRUDType}
-          onCredsSubmit={this.onCredsSubmit}
-          onLogin={this.onLogin}
-          userLogStatus={this.state.userLogStatus} //needed for the button label (login/logout)
-          toggleLoginModal={this.toggleLoginModal}
-          showLoginModal={this.state.showLoginModal}
+          /* onCredsSubmit={this.onCredsSubmit} */
+          /* onLogin={this.onLogin} */
+          /* userLogStatus={this.state.userLogStatus} //needed for the button label (login/logout) */
+          /* toggleLoginModal={this.toggleLoginModal} */
+          /* showLoginModal={this.state.showLoginModal} */
         />{" "}
         {/*products showcase */}
         <ShowProdsList

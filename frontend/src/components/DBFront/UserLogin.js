@@ -16,7 +16,9 @@ class UserLogin extends Component {
     console.log(" mounted...");
   }
 
-  render() {
+    render() {
+
+        console.log('userLogin props xxxy' , this.props)
     let logLabel = "";
     if (this.props.userLogStatus === true) {
       logLabel = "Logout";

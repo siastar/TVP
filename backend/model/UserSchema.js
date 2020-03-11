@@ -3,33 +3,28 @@ console.log('...opening')
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const ProductSchema = new Schema({
+const UserSchema = new Schema({
 
-    artist: {
+    firstname: {
       type: String,
       required: true
     },
-    title: {
+    secondname: {
       type: String,
       required: true
     },
-    year: {
+    username: {
       type: String,
       required: true
     },
-    price: {
+    password: {
       type: String,
       required: true
     },
-    frontcover: {
-      type: String,
-      required: true
-    },
-    backcover: {
+    group: {
       type: String,
       required: true
     }
-
   },
 
   {
@@ -37,13 +32,13 @@ const ProductSchema = new Schema({
   }
 );
 
-module.exports = mongoose.model('vinylproduct', ProductSchema);
+module.exports = mongoose.model('vinyluser', UserSchema);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // the schema implicitally defines the collection it will search in, by pluralizing the 1st
 // parameter in the module.export instruction 
 //
-// in this case the DB collection MUST be called "vinyls"
+// in this case the DB collection MUST be called "users"
 //                                ^^^^                 ^
 //
 // https://stackoverflow.com/questions/5794834/how-to-access-a-preexisting-collection-with-mongoose

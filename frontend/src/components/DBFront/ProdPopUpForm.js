@@ -47,7 +47,7 @@ class ProdPopUpForm extends Component {
                     {/* artist */}                  
                   <input className="form-control"
                          type="text"
-                         required={this.props.fieldIsRequired}
+                         required={this.props.fieldIsRequired} /* true|false */
                          value={this.props.artist}
                          placeholder={this.props.product.artist || 'artist' }
                          onChange={this.props.productHandlers.onChangeArtist}>

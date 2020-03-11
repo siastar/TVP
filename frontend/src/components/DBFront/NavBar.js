@@ -21,9 +21,10 @@ class NavBar extends Component {
     console.log("mounted...");
   }
 
-  render() {
+    render() {
+        console.log('props zzzy' , this.props.loginHandlers);
     let adminButtons = "";
-    if (this.props.userLogStatus == true) {
+    if (this.props.loginHandlers.userLogStatus == true) {
       adminButtons = (
         <div>
           {/* ADD PRODUCT BUTTON */}
@@ -56,8 +57,8 @@ class NavBar extends Component {
           <p>DataBase Front: </p>
 
           <UserLogin
-            onLogin={this.props.onLogin}
-            userLogStatus={this.props.userLogStatus}
+            onLogin={this.props.loginHandlers.onLogin}
+            userLogStatus={this.props.loginHandlers.userLogStatus}
           />
 
           <div>{adminButtons}</div>
@@ -66,8 +67,11 @@ class NavBar extends Component {
           <div>
             <p>test2</p>
             <LoginModal
-              toggleLoginModal={this.props.toggleLoginModal}
-              showLoginModal={this.props.showLoginModal}
+              /* toggleLoginModal={this.props.loginHandlers.toggleLoginModal} */
+              /* showLoginModal={this.props.loginHandlers.showLoginModal} */
+              /* onCredsSubmit={this.props.loginHandlers.onCredsSubmit} */
+              loginHandlers={this.props.loginHandlers}
+              
             />
             {/* true|false */}
           </div>
