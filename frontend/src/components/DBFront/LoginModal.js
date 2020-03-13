@@ -5,27 +5,55 @@ import React, { Component } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 
 class LoginModal extends Component {
+
   componentDidMount() {
     console.log(" mounted...");
-  }
+  };
 
     loginLogout(){
-        switch (this.props.loginHandlers.userLogStatus){
+        console.log('this: ' , this)
+        // switch (this.props.loginHandlers.userLogStatus){
+        // case true:
+        //     console.log(true);
+        //     break;
+        // case false:
+        //     console.log(false);
+        //     this.props.loginHandlers.toggleLoginModal
             
-        }
-    }
+        //     break;
+        // default:
+        //     console.log('error');
+        // };
+    };
     
   render() {
+
+      let loginLogout = 'test';
+      let test = false
+        switch (this.props.loginHandlers.userLogStatus){
+        case true:
+            console.log('is logged: ',  true);
+            loginLogout = this.props.loginHandlers.onLogout;
+            console.log('this is logged!!: ' , this)
+            break;
+        case false:
+            console.log('is logged: ' , false);
+            loginLogout = this.props.loginHandlers.toggleLoginModal
+            console.log('this is not logged !!: ' , this)
+            break;
+        default:
+            console.log('error');
+        };
       
     return (
       <div>
         <Button
           variant="primary"
-          onClick={this.props.loginHandlers.toggleLoginModal}
-        > {this.props.loginHandlers.loginButtonLabel} {/* toggles login|logout */}
+          onClick={loginLogout}
+          /* onClick={this.props.loginHandlers.toggleLoginModal} */
+        > {this.props.loginHandlers.loginButtonLabel} {/* toggles label login|logout */}
         </Button>
-
-        <Modal
+         <Modal
           show={this.props.loginHandlers.showLoginModal} /* toggles true|false */
           onHide={this.props.loginHandlers.toggleLoginModal}
           animation={true}

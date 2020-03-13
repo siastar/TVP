@@ -32,12 +32,14 @@ class DBApp extends React.Component {
       //testProp: false
     };
 
-    //binding
-    this.onLogin = this.onLogin.bind(this);
+    /////binding CRUD methods
     this.deleteProd = this.deleteProd.bind(this); //bound because it is called within updateProdslist
     this.handleCRUDType = this.handleCRUDType.bind(this);
     this.onAddSubmit = this.onAddSubmit.bind(this);
     this.onEditSubmit = this.onEditSubmit.bind(this);
+    ////binding login methods
+    this.onLogin = this.onLogin.bind(this);
+    this.onLogout = this.onLogout.bind(this);
     this.toggleLoginModal = this.toggleLoginModal.bind(this);
     this.onCredsSubmit = this.onCredsSubmit.bind(this);
   }
@@ -54,7 +56,7 @@ class DBApp extends React.Component {
           //check if there is at least 1 element in the array
           this.setState({
             products: fetchedData
-            //fetched data are pushed into the state array "products"
+            //fetched data are pushed into the state array 'products'
             //now state.products contains the DB data
           });
         } else {
@@ -123,7 +125,7 @@ class DBApp extends React.Component {
         //// and returns the object as was before the update
 
         const editedProperties = Object.keys(crudArgs.handledProduct);
-        //// returns an array made of edited properties name, like [ "artist", "title" , etc]
+        //// returns an array made of edited properties name, like [ 'artist', 'title' , etc]
 
         editedProperties.forEach(propertyName => {
           targetProduct[propertyName] = crudArgs.handledProduct[propertyName];
@@ -217,7 +219,7 @@ class DBApp extends React.Component {
   handleCRUDType(crudArgs) {
     //receives object data defined by triggerCRUDAction in SingleProd.js
     switch (
-      crudArgs.crudAction // e.g. crudArgs = {_id: "5e39f88e23a5b1412830572c", crudAction:"CRUD_delete"}
+      crudArgs.crudAction // e.g. crudArgs = {_id: '5e39f88e23a5b1412830572c', crudAction:'CRUD_delete'}
     ) {
       case "CRUD_delete":
         console.log("deleting...", crudArgs);
@@ -232,7 +234,7 @@ class DBApp extends React.Component {
       case "CRUD_create": //receives object data defined by onFormSubmit in AddProd.js
         console.log("creating...", crudArgs); //the object looks like:
         this.addProd(crudArgs.handledProduct); //crudArgs = {newProduct: {the, new, product,...}
-        //            crudAction:"CRUD_create" }
+        //            crudAction:'CRUD_create' }
         break;
 
       default:
@@ -248,38 +250,38 @@ class DBApp extends React.Component {
   ////LOGIN HANDLERS
 
   toggleLoginModal() {
-    //console.log("zzzx login modal...");
+    //console.log('zzzx login modal...');
 
     if (!this.state.showLoginModal) {
       this.setState({
         showLoginModal: true
       });
-      //console.log("zzzx state", this.state);
+      //console.log('zzzx state', this.state);
     } else {
       this.setState({
         showLoginModal: false
       });
-      //console.log("zzzx state", this.state);
+      //console.log('zzzx state', this.state);
     }
   }
 
   onChangeUsername(e) {
     loginCreds.username = e.target.value;
-    //console.log("logincreds", loginCreds);
+    //console.log('logincreds', loginCreds);
   }
 
   onChangePassword(e) {
     loginCreds.password = e.target.value;
-    //console.log("logincreds", loginCreds);
+    //console.log('logincreds', loginCreds);
   }
 
   onCredsSubmit(event) {
     event.preventDefault();
-    //console.log("login credentials", loginCreds);
-    //console.log("username: ", loginCreds.username);
-    //console.log("password: ", loginCreds.password);
-    //console.log("looking for user");
-    ////logUserRoute="http://localhost:3000/users/logusers"
+    //console.log('login credentials', loginCreds);
+    //console.log('username: ', loginCreds.username);
+    //console.log('password: ', loginCreds.password);
+    //console.log('looking for user');
+    ////logUserRoute='http://localhost:3000/users/logusers'
     axios
       .get(logUsersRoute, {
         params: {
@@ -333,7 +335,17 @@ class DBApp extends React.Component {
     }
   }
 
-  toggleLoginButton() {}
+  onLogout() {
+      console.log("logging out...");
+        this.setState({
+          userLogStatus: false,
+          user: {},
+          loginButtonLabel: "login"
+        });
+      
+  };
+
+  //toggleLoginButton() {}
 
   ////PRODUCT HANDLERS
 
@@ -387,11 +399,14 @@ class DBApp extends React.Component {
       onChangePassword: this.onChangePassword,
       onCredsSubmit: this.onCredsSubmit,
       onLogin: this.onLogin,
+      onLogout: this.onLogout,
       userLogStatus: this.state.userLogStatus,
       toggleLoginModal: this.toggleLoginModal,
       showLoginModal: this.state.showLoginModal,
       loginButtonLabel: this.state.loginButtonLabel
     };
+
+      console.log('LH' , loginHandlers)
 
     let showModal = null;
     if (this.state.loginModal == true) {
