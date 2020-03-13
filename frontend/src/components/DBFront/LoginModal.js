@@ -5,35 +5,28 @@ import React, { Component } from "react";
 import { Form, Button, Modal } from "react-bootstrap";
 
 class LoginModal extends Component {
-  // constructor(props) {
-  // super(props);
-  // this.state = {
-  // compName: ''
-  // }
-  // }
-
   componentDidMount() {
     console.log(" mounted...");
-  };
+  }
 
-    testSubmit(event){
-        event.preventDefault();
-        console.log('zzzy event target' , event.target)
-        };
-
-    render() {
-    //console.log("zzz loginmodal props", this.props);
+    loginLogout(){
+        switch (this.props.loginHandlers.userLogStatus){
+            
+        }
+    }
+    
+  render() {
+      
     return (
       <div>
         <Button
           variant="primary"
           onClick={this.props.loginHandlers.toggleLoginModal}
-        >
-          login modal button
+        > {this.props.loginHandlers.loginButtonLabel} {/* toggles login|logout */}
         </Button>
 
         <Modal
-          show={this.props.loginHandlers.showLoginModal} /* true|false */
+          show={this.props.loginHandlers.showLoginModal} /* toggles true|false */
           onHide={this.props.loginHandlers.toggleLoginModal}
           animation={true}
         >
@@ -41,15 +34,14 @@ class LoginModal extends Component {
             <Modal.Title>Enter Username and password</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-                        
             {/* LOGIN FORM */}
             <Form onSubmit={this.props.loginHandlers.onCredsSubmit}>
               {/*this.props.loginHandlers.onCredsSubmit */}
               <Form.Group controlId="formBasicEmail">
-                <Form.Label>Email address</Form.Label>
+                <Form.Label>username</Form.Label>
                 <Form.Control
-                  type="email"
-                  placeholder="Enter email"
+                  type="string"
+                  placeholder="Enter Username"
                   onChange={this.props.loginHandlers.onChangeUsername}
                   /* stores data in DBApp constant loginCreds */
                 />
@@ -73,9 +65,6 @@ class LoginModal extends Component {
                 Submit!
               </Button>
             </Form>
-
-            
-            
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.props.toggleLoginModal}>

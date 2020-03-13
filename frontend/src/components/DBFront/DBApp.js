@@ -15,6 +15,8 @@ const deleteDataRoute = "http://localhost:3000/products/deletedata/";
 const updateDataRoute = "http://localhost:3000/products/updatedata/";
 const postDataRoute = "http://localhost:3000/products/createdata/";
 
+const logUsersRoute = "http://localhost:3000/users/logusers";
+
 class DBApp extends React.Component {
   constructor(props) {
     super(props);
@@ -23,8 +25,10 @@ class DBApp extends React.Component {
       //testProperty: 'test prop 0',
       //compName: 'GetAllProds.js',
       products: [],
+      user: {},
       userLogStatus: false,
-      showLoginModal: false
+      showLoginModal: false,
+      loginButtonLabel: "login"
       //testProp: false
     };
 
@@ -35,11 +39,10 @@ class DBApp extends React.Component {
     this.onAddSubmit = this.onAddSubmit.bind(this);
     this.onEditSubmit = this.onEditSubmit.bind(this);
     this.toggleLoginModal = this.toggleLoginModal.bind(this);
+    this.onCredsSubmit = this.onCredsSubmit.bind(this);
   }
 
   componentDidMount() {
-    //console.log('zzz1 handledProduct', handledProduct);
-
     console.log("...fetching DB data via axios");
     axios
       .get(getDataRoute)
@@ -68,6 +71,7 @@ class DBApp extends React.Component {
     axios
       .post(postDataRoute, newProduct)
       .then(res => {
+        console.log("response login", res.data);
         let justAddedProduct = res.data.message.newdata;
         //added product returns in axios response nested in res.data
         //STATE UPDATER
@@ -101,7 +105,6 @@ class DBApp extends React.Component {
       handledProduct: handledProduct,
       crudAction: crudAction
     };
-    //console.log('...sending object to handleCRUDType: xxx', crudArgs);
     this.handleCRUDType(crudArgs);
     //callback function, send data (crudArgs) to parent
   }
@@ -244,52 +247,93 @@ class DBApp extends React.Component {
 
   ////LOGIN HANDLERS
 
-  onLogin() {
-    console.log("logging in...");
-
-    if (!this.state.userLogStatus) {
-      this.setState({
-        userLogStatus: true
-      });
-    } else {
-      this.setState({
-        userLogStatus: false
-      });
-    }
-  }
-
   toggleLoginModal() {
-    console.log("zzzx login modal...");
+    //console.log("zzzx login modal...");
 
     if (!this.state.showLoginModal) {
       this.setState({
         showLoginModal: true
       });
-      console.log("zzzx state", this.state);
+      //console.log("zzzx state", this.state);
     } else {
       this.setState({
         showLoginModal: false
       });
-      console.log("zzzx state", this.state);
+      //console.log("zzzx state", this.state);
     }
   }
 
   onChangeUsername(e) {
-      loginCreds.username = e.target.value;
-      console.log('logincreds zzzy' , loginCreds);
+    loginCreds.username = e.target.value;
+    //console.log("logincreds", loginCreds);
   }
 
   onChangePassword(e) {
-      loginCreds.password = e.target.value;
-      console.log('logincreds zzzy' , loginCreds);
+    loginCreds.password = e.target.value;
+    //console.log("logincreds", loginCreds);
   }
 
   onCredsSubmit(event) {
     event.preventDefault();
-      console.log("zzzy login credentials" , loginCreds);
-      
-      
+    //console.log("login credentials", loginCreds);
+    //console.log("username: ", loginCreds.username);
+    //console.log("password: ", loginCreds.password);
+    //console.log("looking for user");
+    ////logUserRoute="http://localhost:3000/users/logusers"
+    axios
+      .get(logUsersRoute, {
+        params: {
+          username: loginCreds.username,
+          password: loginCreds.password
+
+          //// send query parameters (username and password) to express.
+          //// parameters are accessible via req.query (in this case in UserRouter.js)
+          //// https://flaviocopes.com/node-axios/
+          //// UserRoutes.js checks if credentials are valid or not and returns
+          //// if not valid: invalid credentials message
+          //// if correct
+        }
+      })
+      .then(res => {
+        console.log("res", res);
+        //console.log('this:' , this);
+        this.onLogin(res.data);
+      })
+      .catch(err => {
+        console.log("error: : ", err);
+      });
   }
+
+  onLogin(loggingUser) {
+    ////logginguUser=res.data
+    console.log("logging in...");
+    console.log(loggingUser.isAuthenticated);
+
+    switch (loggingUser.isAuthenticated) {
+      case true:
+        console.log("authenticated: ", true);
+        this.setState({
+          showLoginModal: false,
+          userLogStatus: true,
+          user: loggingUser.user,
+          loginButtonLabel: "logout"
+        });
+        //// close login modal
+        //// provide user admin tools
+        //// stores logged user info in the state
+        //// TODO remove user password from the state
+        console.log("state: ", this.state);
+        break;
+      case false:
+        console.log("authenticated: ", false);
+        break;
+      default:
+        console.log("error");
+        break;
+    }
+  }
+
+  toggleLoginButton() {}
 
   ////PRODUCT HANDLERS
 
@@ -345,7 +389,8 @@ class DBApp extends React.Component {
       onLogin: this.onLogin,
       userLogStatus: this.state.userLogStatus,
       toggleLoginModal: this.toggleLoginModal,
-      showLoginModal: this.state.showLoginModal
+      showLoginModal: this.state.showLoginModal,
+      loginButtonLabel: this.state.loginButtonLabel
     };
 
     let showModal = null;

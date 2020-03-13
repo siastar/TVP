@@ -1,4 +1,4 @@
-console.log("...opening");
+console.log("...opening /StoreDBconnect");
 
 let mongoose = require("mongoose");
 
@@ -22,10 +22,10 @@ class StoreDatabase {
         useFindAndModify: false //
       })
       .then(() => {
-        console.log("Product Database connection successful");
+        console.log("Store Database connection successful");
       })
       .catch(err => {
-        console.error("Product Database connection error:", err);
+        console.error("Store Database connection error:", err);
       });
   }
 }

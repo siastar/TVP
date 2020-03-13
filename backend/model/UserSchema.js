@@ -1,10 +1,10 @@
-console.log('...opening')
+console.log("...opening /model/UserSchema.js");
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-
+const UserSchema = new Schema(
+  {
     firstname: {
       type: String,
       required: true
@@ -24,6 +24,10 @@ const UserSchema = new Schema({
     group: {
       type: String,
       required: true
+    },
+    email: {
+      type: String,
+      required: true
     }
   },
 
@@ -32,11 +36,11 @@ const UserSchema = new Schema({
   }
 );
 
-module.exports = mongoose.model('vinyluser', UserSchema);
+module.exports = mongoose.model("vinyluser", UserSchema);
 
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // the schema implicitally defines the collection it will search in, by pluralizing the 1st
-// parameter in the module.export instruction 
+// parameter in the module.export instruction
 //
 // in this case the DB collection MUST be called "users"
 //                                ^^^^                 ^

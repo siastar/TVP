@@ -1,4 +1,4 @@
-console.log('...opening')
+console.log('...opening /model/ProductSchema.js')
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;

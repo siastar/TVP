@@ -100,7 +100,7 @@ router.delete('/deletedata/:id', (req, res) => {
 //Update // to fix, does not update correct record
 router.put('/updatedata/:id', (req, res) => {
   //console.log('params.id: ', req.params.id)
-  //console.log('req.body; ', req.body)
+  //console.log('req.body; ', req.body) -> e.g.: { artist: 'Pink Floyd', title: 'Meddle' }
 
   ProductSchema.findOneAndUpdate({
       _id: req.params.id
